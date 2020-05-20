@@ -1,0 +1,257 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:orientation="vertical" >
+
+       <TextView
+            android:id="@+id/txtnome"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+       <TextView
+            android:id="@+id/textView12"
+            android:layout_width="match_parent"
+            android:textStyle="bold"
+            android:layout_height="wrap_content"
+            android:text="Nome Científico:" />
+
+       <TextView
+            android:id="@+id/txtnome_cientifico"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+       <TextView
+            android:id="@+id/textView14"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textStyle="bold"
+            android:text="Nome Popular" />
+
+        <TextView
+            android:id="@+id/txtnome_popular"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+       <TextView
+            android:id="@+id/textView16"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textStyle="bold"
+            android:text="Origem:" />
+
+       <TextView
+            android:id="@+id/txtorigem"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+       <TextView
+            android:id="@+id/textView18"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textStyle="bold"
+            android:text="Região:" />
+
+       <TextView
+            android:id="@+id/txtregiao"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+       <TextView
+            android:id="@+id/textView20"
+            android:layout_width="match_parent"
+            android:textStyle="bold"
+            android:layout_height="wrap_content"
+            android:text="Categoria" />
+
+       <TextView
+            android:id="@+id/txtcategoria"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+       <TextView
+            android:id="@+id/textView22"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textStyle="bold"
+            android:text="Culinaria:" />
+
+       <me.biubiubiu.justifytext.library.JustifyTextView
+            android:id="@+id/txtculinaria"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+       <TextView
+            android:id="@+id/textView24"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textStyle="bold"
+            android:text="Caracteristicas" />
+
+       <me.biubiubiu.justifytext.library.JustifyTextView
+            android:id="@+id/txtcaracteristicas"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+       <TextView
+            android:id="@+id/textView26"
+            android:layout_width="match_parent"
+            android:textStyle="bold"
+            android:layout_height="wrap_content"
+            android:text="Curiosidades:" />
+
+       <me.biubiubiu.justifytext.library.JustifyTextView
+            android:id="@+id/txtcuriosidade"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+       <TextView
+            android:id="@+id/textView28"
+            android:layout_width="match_parent"
+            android:textStyle="bold"
+            android:layout_height="wrap_content"
+            android:text="Energia(KCAL)" />
+
+       <TextView
+            android:id="@+id/txtcaloria"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+       <TextView
+            android:id="@+id/textView30"
+            android:layout_width="match_parent"
+            android:textStyle="bold"
+            android:layout_height="wrap_content"
+            android:text="Proteina(G)" />
+
+       <TextView
+            android:id="@+id/txtproteina"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
+       <TextView
+            android:id="@+id/textView32"
+            android:layout_width="match_parent"
+            android:textStyle="bold"
+            android:layout_height="wrap_content"
+            android:text="Lipideos(G)" />
+
+       <TextView
+            android:id="@+id/txtlipideos"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
+       <TextView
+            android:id="@+id/textView35"
+            android:layout_width="match_parent"
+            android:textStyle="bold"
+            android:layout_height="wrap_content"
+            android:text="Fibra(G)" />
+
+       <TextView
+            android:id="@+id/txtfibra"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
+       <TextView
+            android:id="@+id/textView36"
+            android:layout_width="match_parent"
+            android:textStyle="bold"
+            android:layout_height="wrap_content"
+            android:text="Calcio(MG)" />
+
+       <TextView
+            android:id="@+id/txtcalcio"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
+       <TextView
+            android:id="@+id/textView37"
+            android:layout_width="match_parent"
+            android:textStyle="bold"
+            android:layout_height="wrap_content"
+            android:text="Fosforo(MG)" />
+
+       <TextView
+            android:id="@+id/txtfosforo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
+       <TextView
+            android:id="@+id/textView38"
+            android:layout_width="match_parent"
+            android:textStyle="bold"
+            android:layout_height="wrap_content"
+            android:text="Ferro(MG)" />
+
+       <TextView
+            android:id="@+id/txtferro"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
+       <TextView
+            android:id="@+id/textView45"
+            android:layout_width="match_parent"
+            android:textStyle="bold"
+            android:layout_height="wrap_content"
+            android:text="Retinol(MG)" />
+
+       <TextView
+            android:id="@+id/txtretinol"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
+       <TextView
+            android:id="@+id/textView40"
+            android:layout_width="match_parent"
+            android:textStyle="bold"
+            android:layout_height="wrap_content"
+            android:text="Vitamina B1(MG)" />
+
+       <TextView
+            android:id="@+id/txtvitb1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
+       <TextView
+            android:id="@+id/textView41"
+            android:layout_width="match_parent"
+            android:textStyle="bold"
+            android:layout_height="wrap_content"
+            android:text="Vitamina B2(MG)" />
+
+       <TextView
+            android:id="@+id/txtvitb2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
+       <TextView
+            android:id="@+id/textView42"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textStyle="bold"
+            android:text="Niacina(MG)" />
+
+       <TextView
+            android:id="@+id/txtniacina"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
+       <TextView
+            android:id="@+id/textView43"
+            android:layout_width="match_parent"
+            android:textStyle="bold"
+            android:layout_height="wrap_content"
+            android:text="Vitamina C(MG)" />
+
+       <TextView
+            android:id="@+id/txtvitc"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
+        </LinearLayout>
+</ScrollView>

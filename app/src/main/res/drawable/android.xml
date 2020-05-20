@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<animation-list xmlns:android="http://schemas.android.com/apk/res/android">
+
+    android:id="@+id/android_anim" android:oneshot="true">
+    <item android:drawable="@drawable/zero" android:duration="280"/>
+    <item android:drawable="@drawable/um" android:duration="280"/>
+    <item android:drawable="@drawable/dois" android:duration="280" />
+    <item android:drawable="@drawable/tres" android:duration="280"/>
+    <item android:drawable="@drawable/quatro" android:duration="280" />
+    <item android:drawable="@drawable/cinco" android:duration="280"/>
+    <item android:drawable="@drawable/seis" android:duration="280" />
+    <item android:drawable="@drawable/sete" android:duration="280"/>
+    <item android:drawable="@drawable/oito" android:duration="280" />
+    <item android:drawable="@drawable/nove" android:duration="280"/>
+    <item android:drawable="@drawable/dez" android:duration="280" />
+    <item android:drawable="@drawable/onze" android:duration="280"/>
+    <item android:drawable="@drawable/doze" android:duration="280" />
+    <item android:drawable="@drawable/treze" android:duration="280"/>
+    <item android:drawable="@drawable/quatorze" android:duration="280" />
+    <item android:drawable="@drawable/quinze" android:duration="280"/>
+    <item android:drawable="@drawable/dezesseis" android:duration="280" />
+    <item android:drawable="@drawable/dezessete" android:duration="280"/>
+
+
+
+
+</animation-list>
