@@ -14,6 +14,7 @@ import android.support.v4.app.FragmentTransaction;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
+import android.text.Layout;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
@@ -222,7 +223,6 @@ public class TelaPrincipal extends AppCompatActivity  {
                     hashmap.put("name_item", "" + nameOS);
                     arrayList.add(hashmap);
                 }
-
                 final SimpleAdapter adapter = new SimpleAdapter(TelaPrincipal.this, arrayList, R.layout.item_list_view, from, to);
                 lView.setAdapter(adapter);
             } catch (JSONException e) {

@@ -23,6 +23,7 @@ public class Alimento {
     private String vitb2_mg;
     private String niacina_mg;
     private String vitc_mg;
+    private String imagem;
 
     public Alimento() {
         this.nome = "";
@@ -47,6 +48,7 @@ public class Alimento {
         this.vitb2_mg = "";
         this.niacina_mg = "";
         this.vitc_mg = "";
+        this.imagem = "";
     }
 
     public String getNome() {
@@ -221,6 +223,13 @@ public class Alimento {
         this.vitc_mg = vitc_mg;
     }
 
+    public String getImagem() {
+        return imagem;
+    }
+
+    public void setImagem(String imagem) {
+        this.imagem = imagem;
+    }
 
     public static String trimAll(String text){
         String string = text.trim();

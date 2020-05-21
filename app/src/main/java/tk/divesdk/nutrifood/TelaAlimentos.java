@@ -112,7 +112,6 @@ public class TelaAlimentos extends AppCompatActivity  {
             return resultJson;
         }
 
-
         protected void onPostExecute(String strJson) {
             pd.dismiss();
             super.onPostExecute(strJson);
