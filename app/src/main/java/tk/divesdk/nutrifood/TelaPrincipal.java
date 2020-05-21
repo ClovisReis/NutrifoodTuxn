@@ -223,7 +223,7 @@ public class TelaPrincipal extends AppCompatActivity  {
                     hashmap.put("name_item", "" + nameOS);
                     arrayList.add(hashmap);
                 }
-                final SimpleAdapter adapter = new SimpleAdapter(TelaPrincipal.this, arrayList, R.layout.item_list_view, from, to);
+                final SimpleAdapter adapter = new SimpleAdapter(TelaPrincipal.this, arrayList, R.layout.item_list_view_menu, from, to);
                 lView.setAdapter(adapter);
             } catch (JSONException e) {
                 e.printStackTrace();
