@@ -13,6 +13,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
 
@@ -118,7 +119,7 @@ public class TelaAlimentos extends AppCompatActivity  {
             final ListView lView = (ListView) findViewById(R.id.lv);
             String[] from = {"name_item"};
             int[] to = {R.id.name_item};
-            ArrayList<HashMap<String, String>> arrayList = new ArrayList<HashMap<String, String>>();
+            ArrayList<Alimento> arrayList = new ArrayList<Alimento>();
             HashMap<String, String> hashmap;
 
             try {
@@ -133,14 +134,16 @@ public class TelaAlimentos extends AppCompatActivity  {
                     lListIds.add(id);
 
                     String nameOS = friend.getString("nome");
-                    Log.d("FOR_LOG", nameOS);
+                    String imageOS = friend.getString("imagem");
+
+                    Alimento lAli =  new Alimento(nameOS,imageOS);
 
                     hashmap = new HashMap<String, String>();
                     hashmap.put("name_item", "" + nameOS);
-                    arrayList.add(hashmap);
+                    arrayList.add(lAli);
                 }
 
-                final SimpleAdapter adapter = new SimpleAdapter(TelaAlimentos.this, arrayList, R.layout.item_list_view, from, to);
+                ArrayAdapter adapter = new AlimentoAdapter(TelaAlimentos.this, arrayList);
                 lView.setAdapter(adapter);
             } catch (JSONException e) {
                 e.printStackTrace();

@@ -25,6 +25,32 @@ public class Alimento {
     private String vitc_mg;
     private String imagem;
 
+    public Alimento(String nome, String imagem) {
+        this.nome = nome;
+        this.imagem = imagem;
+        this.nome_cientifico = "";
+        this.nome_popular = "";
+        this.origem = "";
+        this.regiao = "";
+        this.categoria = "";
+        this.caracteristicas = "";
+        this.curiosidade = "";
+        this.culinaria = "";
+        this.energia_kcal = "";
+        this.proteinas_g = "";
+        this.lipideos_g = "";
+        this.carboidratos_g = "";
+        this.fibra_g = "";
+        this.calcio_mg = "";
+        this.fosforo_mg = "";
+        this.ferro_mg = "";
+        this.retinol_mg = "";
+        this.vitb1_mg = "";
+        this.vitb2_mg = "";
+        this.niacina_mg = "";
+        this.vitc_mg = "";
+    }
+
     public Alimento() {
         this.nome = "";
         this.nome_cientifico = "";
