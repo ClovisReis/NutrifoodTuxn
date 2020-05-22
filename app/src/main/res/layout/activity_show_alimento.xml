@@ -109,149 +109,117 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
 
-       <TextView
-            android:id="@+id/textView28"
-            android:layout_width="match_parent"
-            android:textStyle="bold"
-            android:layout_height="wrap_content"
-            android:text="Energia(KCAL)" />
+       <Space
+           android:layout_width="1dp"
+           android:layout_height="30dp"/>
 
        <TextView
-            android:id="@+id/txtcaloria"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+           android:id="@+id/tabela_titulo"
+           android:layout_width="match_parent"
+           android:textStyle="bold"
+           android:textAlignment="center"
+           android:layout_height="wrap_content"
+           android:text="Tabela – Análise nutricional em 100 g"
+           android:layout_gravity="center_horizontal" />
 
-       <TextView
-            android:id="@+id/textView30"
-            android:layout_width="match_parent"
-            android:textStyle="bold"
-            android:layout_height="wrap_content"
-            android:text="Proteina(G)" />
-
-       <TextView
-            android:id="@+id/txtproteina"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
-
-       <TextView
-            android:id="@+id/textView32"
-            android:layout_width="match_parent"
-            android:textStyle="bold"
-            android:layout_height="wrap_content"
-            android:text="Lipideos(G)" />
-
-       <TextView
-            android:id="@+id/txtlipideos"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
-
-       <TextView
-            android:id="@+id/textView35"
-            android:layout_width="match_parent"
-            android:textStyle="bold"
-            android:layout_height="wrap_content"
-            android:text="Fibra(G)" />
-
-       <TextView
-            android:id="@+id/txtfibra"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
-
-       <TextView
-            android:id="@+id/textView36"
-            android:layout_width="match_parent"
-            android:textStyle="bold"
-            android:layout_height="wrap_content"
-            android:text="Calcio(MG)" />
-
-       <TextView
-            android:id="@+id/txtcalcio"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
-
-       <TextView
-            android:id="@+id/textView37"
-            android:layout_width="match_parent"
-            android:textStyle="bold"
-            android:layout_height="wrap_content"
-            android:text="Fosforo(MG)" />
-
-       <TextView
-            android:id="@+id/txtfosforo"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
-
-       <TextView
-            android:id="@+id/textView38"
-            android:layout_width="match_parent"
-            android:textStyle="bold"
-            android:layout_height="wrap_content"
-            android:text="Ferro(MG)" />
-
-       <TextView
-            android:id="@+id/txtferro"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
-
-       <TextView
-            android:id="@+id/textView45"
-            android:layout_width="match_parent"
-            android:textStyle="bold"
-            android:layout_height="wrap_content"
-            android:text="Retinol(MG)" />
-
-       <TextView
-            android:id="@+id/txtretinol"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
-
-       <TextView
-            android:id="@+id/textView40"
-            android:layout_width="match_parent"
-            android:textStyle="bold"
-            android:layout_height="wrap_content"
-            android:text="Vitamina B1(MG)" />
-
-       <TextView
-            android:id="@+id/txtvitb1"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
-
-       <TextView
-            android:id="@+id/textView41"
-            android:layout_width="match_parent"
-            android:textStyle="bold"
-            android:layout_height="wrap_content"
-            android:text="Vitamina B2(MG)" />
-
-       <TextView
-            android:id="@+id/txtvitb2"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
-
-       <TextView
-            android:id="@+id/textView42"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textStyle="bold"
-            android:text="Niacina(MG)" />
-
-       <TextView
-            android:id="@+id/txtniacina"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
-
-       <TextView
-            android:id="@+id/textView43"
-            android:layout_width="match_parent"
-            android:textStyle="bold"
-            android:layout_height="wrap_content"
-            android:text="Vitamina C(MG)" />
-
-       <TextView
-            android:id="@+id/txtvitc"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
-
-        </LinearLayout>
+       <TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+           android:layout_width="match_parent"
+           android:layout_height="match_parent"
+           android:stretchColumns="8">
+          <TableRow>
+             <TextView
+                 android:text="Energia(Kcal)"
+                 android:padding="10dp" />
+             <TextView
+                 android:text="Proteínas(g)"
+                 android:padding="10dp" />
+             <TextView
+                 android:text="Lipídeos(g)"
+                 android:padding="10dp" />
+             <TextView
+                 android:text="Carboidratos(g)"
+                 android:padding="10dp" />
+          </TableRow>
+          <TableRow>
+             <TextView
+                 android:id="@+id/txtcaloria"
+                 android:padding="10dp" />
+             <TextView
+                 android:id="@+id/txtproteina"
+                 android:padding="10dp" />
+             <TextView
+                 android:id="@+id/txtlipideos"
+                 android:padding="10dp" />
+             <TextView
+                 android:id="@+id/txtcarboidrato"
+                 android:padding="10dp" />
+          </TableRow>
+          <TableRow>
+             <TextView
+                 android:text="Fibra(g)"
+                 android:padding="10dp" />
+             <TextView
+                 android:text="Cálcio(mg)"
+                 android:padding="10dp" />
+             <TextView
+                 android:text="Fósforo(mg)"
+                 android:padding="10dp" />
+             <TextView
+                 android:text="Ferro(mg)"
+                 android:padding="10dp" />
+          </TableRow>
+          <TableRow>
+             <TextView
+                 android:id="@+id/txtfibra"
+                 android:padding="10dp" />
+             <TextView
+                 android:id="@+id/txtcalcio"
+                 android:padding="10dp" />
+             <TextView
+                 android:id="@+id/txtfosforo"
+                 android:padding="10dp" />
+             <TextView
+                 android:id="@+id/txtferro"
+                 android:padding="10dp" />
+          </TableRow>
+          <TableRow>
+             <TextView
+                 android:text="Retinol(mg)"
+                 android:padding="10dp" />
+             <TextView
+                 android:text="Niacina(mg)"
+                 android:padding="10dp" />
+             <TextView
+                 android:text="Vit. B1(mg)"
+                 android:padding="10dp" />
+             <TextView
+                 android:text="Vit. B2(mg)"
+                 android:padding="10dp" />
+          </TableRow>
+          <TableRow>
+             <TextView
+                 android:id="@+id/txtretinol"
+                 android:padding="10dp" />
+             <TextView
+                 android:id="@+id/txtniacina"
+                 android:padding="10dp" />
+             <TextView
+                 android:id="@+id/txtvitb1"
+                 android:padding="10dp" />
+             <TextView
+                 android:id="@+id/txtvitb2"
+                 android:padding="10dp" />
+          </TableRow>
+          <TableRow>
+          <TextView
+              android:text="Vit. C(mg)"
+              android:padding="10dp" />
+          </TableRow>
+          <TableRow>
+          <TextView
+              android:id="@+id/txtvitc"
+              android:padding="10dp" />
+          </TableRow>
+       </TableLayout>
+    </LinearLayout>
 </ScrollView>
