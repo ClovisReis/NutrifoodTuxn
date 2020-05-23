@@ -11,9 +11,11 @@ import android.support.design.widget.BottomNavigationView;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.FragmentTransaction;
+import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.text.Layout;
 import android.view.MenuItem;
 import android.view.View;
@@ -77,56 +79,42 @@ public class TelaPrincipal extends AppCompatActivity  {
 
         mDrawerLayout = (DrawerLayout) findViewById(R.id.drawerLayout);
         mNavigationView = (NavigationView) findViewById(R.id.shitstuff);
+
         mNavigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(MenuItem menuItem) {
                 mDrawerLayout.closeDrawers();
                 Intent intent;
-                switch (menuItem.getItemId()){
+                switch (menuItem.getItemId()) {
                     case R.id.contato:
                         break;
                     case R.id.sobre:
+                        intent = new Intent(getBaseContext(), tela_sobre.class);
+                        startActivity(intent);
                         break;
                     case R.id.formulario:
                         Uri uri = Uri.parse("http://goo.gl/forms/QmLw25RDuQ");
-                        intent = new Intent(Intent.ACTION_VIEW,uri);
+                        intent = new Intent(Intent.ACTION_VIEW, uri);
                         startActivity(intent);
                         break;
                     case R.id.googleplay:
-                        intent = new Intent(Intent.ACTION_VIEW,Uri.parse("market://details?id=tk.divesdk.nutrifood"));
-                        startActivity(intent);
+
                         break;
 
                 }
 
-                /*if (menuItem.getItemId() == R.id.contato) {
-                    FragmentTransaction xfragmentTransaction = mFragmentManager.beginTransaction();
-                    xfragmentTransaction.replace(R.id.containerView,new tab_fragment()).commit();
-                    intent = new Intent(getBaseContext(), tela_contato.class);
-                    startActivity(intent);
-                }*/
-
                 return false;
             }
-
-        });
-
+                });
 
 
         android.support.v7.widget.Toolbar toolbar = (android.support.v7.widget.Toolbar) findViewById(R.id.toolbar);
+        ActionBarDrawerToggle mDrawerToggle = new ActionBarDrawerToggle(this,mDrawerLayout, toolbar,R.string.app_name,
+                R.string.app_name);
 
+        mDrawerLayout.setDrawerListener(mDrawerToggle);
 
-        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, mDrawerLayout, toolbar, R.string.open_drawer, R.string.close_drawer);
-        mDrawerLayout.addDrawerListener(toggle);
-
-       // setSupportActionBar(toolbar);
-
-        toggle.syncState();
-
-
-
-
-
+        mDrawerToggle.syncState();
 
 
         AbaConsulta = "categoria";
@@ -147,6 +135,9 @@ public class TelaPrincipal extends AppCompatActivity  {
                 startActivity(it);
             }
         });
+
+
+
     }
 
 
@@ -156,7 +147,9 @@ public class TelaPrincipal extends AppCompatActivity  {
     }
 
 
-    private class ParseTask extends AsyncTask<Void, Void, String> {
+
+
+        private class ParseTask extends AsyncTask<Void, Void, String> {
 
         HttpURLConnection urlConnection = null;
         BufferedReader reader = null;
