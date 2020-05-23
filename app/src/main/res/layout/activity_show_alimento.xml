@@ -1,230 +1,348 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
+android:layout_width="match_parent"
+android:layout_height="match_parent">
 
-    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
-        android:orientation="vertical" >
+<LinearLayout
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical" >
 
-       <include
-           android:id="@+id/app_bar"
-           layout="@layout/toolbar"
-           />
-       
-       <TextView
-            android:id="@+id/txtnome"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+   <include
+       android:id="@+id/app_bar"
+       layout="@layout/toolbar"
+       />
 
-       <TextView
-            android:id="@+id/textView12"
-            android:layout_width="match_parent"
-            android:textStyle="bold"
-            android:layout_height="wrap_content"
-            android:text="Nome Científico:" />
+   <TextView
+       android:id="@+id/txtnome"
+       android:textStyle="bold"
+       android:textSize="25sp"
+       android:textAlignment="center"
+       android:layout_width="match_parent"
+       android:layout_height="wrap_content"
+       android:gravity="center_horizontal" />
 
-       <TextView
-            android:id="@+id/txtnome_cientifico"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+   <Space
+       android:layout_width="1dp"
+       android:layout_height="20dp"/>
 
-       <TextView
-            android:id="@+id/textView14"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textStyle="bold"
-            android:text="Nome Popular" />
+   <LinearLayout
+       android:layout_width="match_parent"
+       android:layout_height="wrap_content"
+       android:layout_weight="50"
+       android:weightSum="100">
 
-        <TextView
-            android:id="@+id/txtnome_popular"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+      <TextView
+          android:id="@+id/textView12"
+          android:textStyle="bold"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:text="Nome Científico: " />
 
-       <TextView
-            android:id="@+id/textView16"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textStyle="bold"
-            android:text="Origem:" />
+      <TextView
+          android:id="@+id/txtnome_cientifico"
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content" />
+   </LinearLayout>
 
-       <TextView
-            android:id="@+id/txtorigem"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+   <Space
+       android:layout_width="1dp"
+       android:layout_height="10dp"/>
 
-       <TextView
-            android:id="@+id/textView18"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textStyle="bold"
-            android:text="Região:" />
+   <LinearLayout
+       android:layout_width="match_parent"
+       android:layout_height="wrap_content"
+       android:layout_weight="50"
+       android:weightSum="100">
 
-       <TextView
-            android:id="@+id/txtregiao"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+      <TextView
+          android:id="@+id/textView14"
+          android:layout_width="wrap_content"
+          android:layout_height="match_parent"
+          android:text="Nome Popular: "
+          android:textStyle="bold" />
 
-       <TextView
-            android:id="@+id/textView20"
-            android:layout_width="match_parent"
-            android:textStyle="bold"
-            android:layout_height="wrap_content"
-            android:text="Categoria" />
+      <TextView
+          android:id="@+id/txtnome_popular"
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content" />
+   </LinearLayout>
 
-       <TextView
-            android:id="@+id/txtcategoria"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+   <Space
+       android:layout_width="1dp"
+       android:layout_height="10dp"/>
 
-       <TextView
-            android:id="@+id/textView22"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textStyle="bold"
-            android:text="Culinaria:" />
+   <LinearLayout
+       android:layout_width="match_parent"
+       android:layout_height="wrap_content"
+       android:layout_weight="50"
+       android:weightSum="100">
 
-       <me.biubiubiu.justifytext.library.JustifyTextView
-            android:id="@+id/txtculinaria"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+      <TextView
+          android:id="@+id/textView16"
+          android:textStyle="bold"
+          android:layout_width="wrap_content"
+          android:layout_height="match_parent"
+          android:text="Origem: " />
 
-       <TextView
-            android:id="@+id/textView24"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textStyle="bold"
-            android:text="Caracteristicas" />
+      <TextView
+          android:id="@+id/txtorigem"
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content" />
+   </LinearLayout>
 
-       <me.biubiubiu.justifytext.library.JustifyTextView
-            android:id="@+id/txtcaracteristicas"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+   <Space
+       android:layout_width="1dp"
+       android:layout_height="10dp"/>
 
-       <TextView
-            android:id="@+id/textView26"
-            android:layout_width="match_parent"
-            android:textStyle="bold"
-            android:layout_height="wrap_content"
-            android:text="Curiosidades:" />
+   <LinearLayout
+       android:layout_width="match_parent"
+       android:layout_height="wrap_content"
+       android:layout_weight="50"
+       android:weightSum="100">
 
-       <me.biubiubiu.justifytext.library.JustifyTextView
-            android:id="@+id/txtcuriosidade"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+      <TextView
+          android:id="@+id/textView50"
+          android:textStyle="bold"
+          android:layout_width="wrap_content"
+          android:layout_height="match_parent"
+          android:text="Região: " />
 
-       <Space
-           android:layout_width="1dp"
-           android:layout_height="30dp"/>
+      <TextView
+          android:id="@+id/txtregiao"
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content" />
+   </LinearLayout>
 
-       <TextView
-           android:id="@+id/tabela_titulo"
-           android:layout_width="match_parent"
-           android:textStyle="bold"
-           android:textAlignment="center"
-           android:layout_height="wrap_content"
-           android:text="Tabela – Análise nutricional em 100 g"
-           android:layout_gravity="center_horizontal" />
+   <Space
+       android:layout_width="1dp"
+       android:layout_height="10dp"/>
 
-       <TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
-           android:layout_width="match_parent"
-           android:layout_height="match_parent"
-           android:stretchColumns="8">
-          <TableRow>
-             <TextView
-                 android:text="Energia(Kcal)"
-                 android:padding="10dp" />
-             <TextView
-                 android:text="Proteínas(g)"
-                 android:padding="10dp" />
-             <TextView
-                 android:text="Lipídeos(g)"
-                 android:padding="10dp" />
-             <TextView
-                 android:text="Carboidratos(g)"
-                 android:padding="10dp" />
-          </TableRow>
-          <TableRow>
-             <TextView
-                 android:id="@+id/txtcaloria"
-                 android:padding="10dp" />
-             <TextView
-                 android:id="@+id/txtproteina"
-                 android:padding="10dp" />
-             <TextView
-                 android:id="@+id/txtlipideos"
-                 android:padding="10dp" />
-             <TextView
-                 android:id="@+id/txtcarboidrato"
-                 android:padding="10dp" />
-          </TableRow>
-          <TableRow>
-             <TextView
-                 android:text="Fibra(g)"
-                 android:padding="10dp" />
-             <TextView
-                 android:text="Cálcio(mg)"
-                 android:padding="10dp" />
-             <TextView
-                 android:text="Fósforo(mg)"
-                 android:padding="10dp" />
-             <TextView
-                 android:text="Ferro(mg)"
-                 android:padding="10dp" />
-          </TableRow>
-          <TableRow>
-             <TextView
-                 android:id="@+id/txtfibra"
-                 android:padding="10dp" />
-             <TextView
-                 android:id="@+id/txtcalcio"
-                 android:padding="10dp" />
-             <TextView
-                 android:id="@+id/txtfosforo"
-                 android:padding="10dp" />
-             <TextView
-                 android:id="@+id/txtferro"
-                 android:padding="10dp" />
-          </TableRow>
-          <TableRow>
-             <TextView
-                 android:text="Retinol(mg)"
-                 android:padding="10dp" />
-             <TextView
-                 android:text="Niacina(mg)"
-                 android:padding="10dp" />
-             <TextView
-                 android:text="Vit. B1(mg)"
-                 android:padding="10dp" />
-             <TextView
-                 android:text="Vit. B2(mg)"
-                 android:padding="10dp" />
-          </TableRow>
-          <TableRow>
-             <TextView
-                 android:id="@+id/txtretinol"
-                 android:padding="10dp" />
-             <TextView
-                 android:id="@+id/txtniacina"
-                 android:padding="10dp" />
-             <TextView
-                 android:id="@+id/txtvitb1"
-                 android:padding="10dp" />
-             <TextView
-                 android:id="@+id/txtvitb2"
-                 android:padding="10dp" />
-          </TableRow>
-          <TableRow>
-          <TextView
-              android:text="Vit. C(mg)"
-              android:padding="10dp" />
-          </TableRow>
-          <TableRow>
-          <TextView
-              android:id="@+id/txtvitc"
-              android:padding="10dp" />
-          </TableRow>
-       </TableLayout>
-    </LinearLayout>
+   <LinearLayout
+       android:layout_width="match_parent"
+       android:layout_height="wrap_content"
+       android:layout_weight="50"
+       android:weightSum="100">
+
+      <TextView
+          android:id="@+id/textView57"
+          android:textStyle="bold"
+          android:layout_width="wrap_content"
+          android:layout_height="match_parent"
+          android:text="Categoria: " />
+
+      <TextView
+          android:id="@+id/txtcategoria"
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content" />
+   </LinearLayout>
+
+   <Space
+       android:layout_width="1dp"
+       android:layout_height="10dp"/>
+
+   <TextView
+       android:id="@+id/textView22"
+       android:layout_width="match_parent"
+       android:layout_height="wrap_content"
+       android:textStyle="bold"
+       android:text="Culinaria:" />
+
+   <me.biubiubiu.justifytext.library.JustifyTextView
+       android:id="@+id/txtculinaria"
+       android:layout_width="wrap_content"
+       android:layout_height="wrap_content" />
+
+   <TextView
+       android:id="@+id/textView24"
+       android:layout_width="match_parent"
+       android:layout_height="wrap_content"
+       android:textStyle="bold"
+       android:text="Caracteristicas" />
+
+   <me.biubiubiu.justifytext.library.JustifyTextView
+       android:id="@+id/txtcaracteristicas"
+       android:layout_width="match_parent"
+       android:layout_height="wrap_content" />
+
+   <TextView
+       android:id="@+id/textView26"
+       android:layout_width="match_parent"
+       android:textStyle="bold"
+       android:layout_height="wrap_content"
+       android:text="Curiosidades:" />
+
+   <me.biubiubiu.justifytext.library.JustifyTextView
+       android:id="@+id/txtcuriosidade"
+       android:layout_width="match_parent"
+       android:layout_height="wrap_content" />
+
+   <Space
+       android:layout_width="1dp"
+       android:layout_height="30dp"/>
+
+   <TextView
+       android:id="@+id/tabela_titulo"
+       android:layout_width="match_parent"
+       android:textStyle="bold"
+       android:textAlignment="center"
+       android:layout_height="wrap_content"
+       android:text="Tabela – Análise nutricional em 100 g"
+       android:layout_gravity="center_horizontal" />
+
+   <TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+       android:layout_width="match_parent"
+       android:layout_height="wrap_content"
+       android:layout_margin="15dp">
+      <TableRow>
+         <TextView
+             android:text="Energia(Kcal)"
+             android:textAlignment="center"
+             android:gravity="center_horizontal"
+             android:background="@drawable/bordas_layout"/>
+         <TextView
+             android:textAlignment="center"
+             android:gravity="center_horizontal"
+             android:text="Proteínas(g)"
+             android:background="@drawable/bordas_layout"/>
+         <TextView
+             android:textAlignment="center"
+             android:gravity="center_horizontal"
+             android:text="Lipídeos(g)"
+             android:background="@drawable/bordas_layout"/>
+         <TextView
+             android:textAlignment="center"
+             android:gravity="center_horizontal"
+             android:text="Carboidratos(g)"
+             android:background="@drawable/bordas_layout"/>
+      </TableRow>
+      <TableRow>
+         <TextView
+             android:textAlignment="center"
+             android:gravity="center_horizontal"
+             android:id="@+id/txtcaloria"
+             android:background="@drawable/bordas_layout"/>
+         <TextView
+             android:textAlignment="center"
+             android:gravity="center_horizontal"
+             android:id="@+id/txtproteina"
+             android:background="@drawable/bordas_layout"/>
+         <TextView
+             android:textAlignment="center"
+             android:gravity="center_horizontal"
+             android:id="@+id/txtlipideos"
+             android:background="@drawable/bordas_layout"/>
+         <TextView
+             android:textAlignment="center"
+             android:gravity="center_horizontal"
+             android:id="@+id/txtcarboidrato"
+             android:background="@drawable/bordas_layout"/>
+      </TableRow>
+      <TableRow>
+         <TextView
+
+             android:textAlignment="center"
+             android:gravity="center_horizontal"
+             android:text="Fibra(g)"
+             android:background="@drawable/bordas_layout"
+              />
+         <TextView
+             android:textAlignment="center"
+             android:gravity="center_horizontal"
+             android:text="Cálcio(mg)"
+             android:background="@drawable/bordas_layout"/>
+         <TextView
+             android:textAlignment="center"
+             android:gravity="center_horizontal"
+             android:text="Fósforo(mg)"
+             android:background="@drawable/bordas_layout"/>
+         <TextView
+             android:textAlignment="center"
+             android:gravity="center_horizontal"
+             android:text="Ferro(mg)"
+             android:background="@drawable/bordas_layout"/>
+      </TableRow>
+      <TableRow>
+         <TextView
+             android:textAlignment="center"
+             android:gravity="center_horizontal"
+             android:id="@+id/txtfibra"
+             android:background="@drawable/bordas_layout"/>
+         <TextView
+             android:textAlignment="center"
+             android:gravity="center_horizontal"
+             android:id="@+id/txtcalcio"
+             android:background="@drawable/bordas_layout"/>
+         <TextView
+             android:textAlignment="center"
+             android:gravity="center_horizontal"
+             android:id="@+id/txtfosforo"
+             android:background="@drawable/bordas_layout"/>
+         <TextView
+             android:textAlignment="center"
+             android:gravity="center_horizontal"
+             android:id="@+id/txtferro"
+             android:background="@drawable/bordas_layout"/>
+      </TableRow>
+      <TableRow>
+         <TextView
+             android:textAlignment="center"
+             android:gravity="center_horizontal"
+             android:text="Retinol(mg)"
+             android:background="@drawable/bordas_layout"/>
+         <TextView
+             android:textAlignment="center"
+             android:gravity="center_horizontal"
+             android:text="Niacina(mg)"
+             android:background="@drawable/bordas_layout"/>
+         <TextView
+             android:textAlignment="center"
+             android:gravity="center_horizontal"
+             android:text="Vit. B1(mg)"
+             android:background="@drawable/bordas_layout"/>
+         <TextView
+             android:textAlignment="center"
+             android:gravity="center_horizontal"
+             android:text="Vit. B2(mg)"
+             android:background="@drawable/bordas_layout"/>
+      </TableRow>
+      <TableRow>
+         <TextView
+             android:textAlignment="center"
+             android:gravity="center_horizontal"
+             android:id="@+id/txtretinol"
+             android:background="@drawable/bordas_layout"/>
+         <TextView
+             android:textAlignment="center"
+             android:gravity="center_horizontal"
+             android:id="@+id/txtniacina"
+             android:background="@drawable/bordas_layout"/>
+         <TextView
+             android:textAlignment="center"
+             android:gravity="center_horizontal"
+             android:id="@+id/txtvitb1"
+             android:background="@drawable/bordas_layout"/>
+         <TextView
+             android:textAlignment="center"
+             android:gravity="center_horizontal"
+             android:id="@+id/txtvitb2"
+             android:background="@drawable/bordas_layout"/>
+      </TableRow>
+      <TableRow>
+         <TextView
+             android:textAlignment="center"
+             android:gravity="center_horizontal"
+             android:text="Vit. C(mg)"
+             android:background="@drawable/bordas_layout"/>
+      </TableRow>
+      <TableRow>
+         <TextView
+             android:textAlignment="center"
+             android:gravity="center_horizontal"
+             android:id="@+id/txtvitc"
+             android:background="@drawable/bordas_layout"/>
+      </TableRow>
+   </TableLayout>
+
+</LinearLayout>
 </ScrollView>
