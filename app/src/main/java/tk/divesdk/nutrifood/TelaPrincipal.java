@@ -1,37 +1,26 @@
 package tk.divesdk.nutrifood;
 
 import android.app.ProgressDialog;
-import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
-import android.support.design.widget.BottomNavigationView;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.NavigationView;
-import android.support.v4.app.FragmentTransaction;
-import android.support.v4.view.GravityCompat;
-import android.support.v4.widget.DrawerLayout;
-import android.support.v7.app.ActionBarDrawerToggle;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
-import android.text.Layout;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
-import android.widget.TextView;
-import android.os.AsyncTask;
-
-import android.util.Log;
-import android.widget.ListView;
 import android.widget.SimpleAdapter;
-
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBarDrawerToggle;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+import androidx.drawerlayout.widget.DrawerLayout;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.android.material.navigation.NavigationView;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-
 import java.io.BufferedReader;
 import java.io.InputStream;
 import java.io.InputStreamReader;
@@ -39,8 +28,6 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.io.BufferedReader;
-import java.net.HttpURLConnection;
 
 public class TelaPrincipal extends AppCompatActivity  {
 
@@ -50,8 +37,6 @@ public class TelaPrincipal extends AppCompatActivity  {
     private String AbaConsulta;
     ListView lv;
     int a= 0;
-
-
 
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
             = new BottomNavigationView.OnNavigationItemSelectedListener() {
@@ -89,7 +74,7 @@ public class TelaPrincipal extends AppCompatActivity  {
                     case R.id.contato:
                         break;
                     case R.id.sobre:
-                        intent = new Intent(getBaseContext(), tela_sobre.class);
+                        intent = new Intent(TelaPrincipal.this, tela_sobre.class);
                         startActivity(intent);
                         break;
                     case R.id.formulario:
@@ -98,9 +83,7 @@ public class TelaPrincipal extends AppCompatActivity  {
                         startActivity(intent);
                         break;
                     case R.id.googleplay:
-
                         break;
-
                 }
 
                 return false;
@@ -108,7 +91,7 @@ public class TelaPrincipal extends AppCompatActivity  {
                 });
 
 
-        android.support.v7.widget.Toolbar toolbar = (android.support.v7.widget.Toolbar) findViewById(R.id.toolbar);
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         ActionBarDrawerToggle mDrawerToggle = new ActionBarDrawerToggle(this,mDrawerLayout, toolbar,R.string.app_name,
                 R.string.app_name);
 
@@ -135,19 +118,12 @@ public class TelaPrincipal extends AppCompatActivity  {
                 startActivity(it);
             }
         });
-
-
-
     }
-
 
     private void CarregaList(String tipoItem){
         Aba = tipoItem;
         new ParseTask().execute();
     }
-
-
-
 
         private class ParseTask extends AsyncTask<Void, Void, String> {
 
@@ -223,6 +199,4 @@ public class TelaPrincipal extends AppCompatActivity  {
             }
         }
     }
-
-
 }
