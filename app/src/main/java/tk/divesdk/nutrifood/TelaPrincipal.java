@@ -18,6 +18,8 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.drawerlayout.widget.DrawerLayout;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationView;
+import com.google.firebase.auth.FirebaseAuth;
+
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -80,6 +82,11 @@ public class TelaPrincipal extends AppCompatActivity  {
                     case R.id.formulario:
                         Uri uri = Uri.parse("http://goo.gl/forms/QmLw25RDuQ");
                         intent = new Intent(Intent.ACTION_VIEW, uri);
+                        startActivity(intent);
+                        break;
+                    case R.id.logout:
+                        FirebaseAuth.getInstance().signOut();
+                        intent = new Intent(TelaPrincipal.this, LoginActivity.class);
                         startActivity(intent);
                         break;
                     case R.id.googleplay:

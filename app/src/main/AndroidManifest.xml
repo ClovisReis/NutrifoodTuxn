@@ -11,39 +11,39 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".Tela_termos"
-            >
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-
+        <activity android:name=".LoginActivity"></activity>
+        <activity android:name=".CadastroActivity"></activity>
+        <activity android:name=".Reset"></activity>
+        <activity android:name=".Tela_termos">
         </activity>
-
         <activity
             android:name=".tela_sobre"
             android:parentActivityName=".TelaPrincipal"
             android:theme="@style/AppTheme.NoActionBar">
-            
         </activity>
         <activity
             android:name=".TelaPrincipal"
             android:label="@string/app_name"
             android:theme="@style/AppTheme.NoActionBar">
-
         </activity>
         <activity
             android:name=".TelaAlimentos"
             android:label="@string/app_name"
-            android:parentActivityName=".TelaPrincipal"></activity>
+            android:parentActivityName=".TelaPrincipal">
+        </activity>
         <activity
             android:name=".tela_splash"
-            android:configChanges="orientation"></activity>
+            android:configChanges="orientation">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
         <activity
             android:name=".ShowAlimento"
             android:label="@string/app_name"
-            android:launchMode="singleTop"></activity>
+            android:launchMode="singleTop">
+        </activity>
     </application>
 
 </manifest>

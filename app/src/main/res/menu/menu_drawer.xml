@@ -20,6 +20,7 @@ tools:showIn="navigation_view">
             android:id="@+id/contato"
             android:icon="@drawable/inbox"/>
 
-
-
+        <item android:title="Logout"
+            android:id="@+id/logout"
+            android:icon="@drawable/inbox"/>
 </menu>
