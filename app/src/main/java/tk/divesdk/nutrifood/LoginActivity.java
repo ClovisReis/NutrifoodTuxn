@@ -20,6 +20,7 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.GoogleAuthProvider;
+import com.google.firebase.database.FirebaseDatabase;
 
 public class LoginActivity extends AppCompatActivity {
     private String email;
@@ -73,8 +74,24 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
                 if(task.isSuccessful()){ //Sucesso ao fazer login do usuario
-                    Intent it = new Intent(getApplicationContext(), TelaPrincipal.class);
-                    startActivity(it);
+                    FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+                    FirebaseDatabase.getInstance().getReference("Users")
+                            .child(FirebaseAuth.getInstance().getCurrentUser().getUid()).child("nome")
+                            .setValue(user.getDisplayName()).addOnCompleteListener(new OnCompleteListener<Void>() {
+                        @Override
+                        public void onComplete(@NonNull Task<Void> task) {
+                            if (task.isSuccessful()) {
+                                Intent it = new Intent(getApplicationContext(), TelaPrincipal.class);
+                                startActivity(it);
+                            }
+                            else {
+                                Toast toast = Toast.makeText(getApplicationContext(), "Cadastro falhou!",
+                                        Toast.LENGTH_SHORT);
+                                toast.show();
+                                finish();
+                            }
+                        }
+                    });
                 }
                 else{
                     Toast toast = Toast.makeText(getApplicationContext(), "Login falhou!", Toast.LENGTH_LONG);
