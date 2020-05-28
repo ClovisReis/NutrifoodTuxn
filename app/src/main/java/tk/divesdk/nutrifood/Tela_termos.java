@@ -1,5 +1,6 @@
 package tk.divesdk.nutrifood;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
@@ -13,6 +14,25 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+
+import java.util.HashMap;
+import java.util.Map;
+
+class Termo {
+    public boolean aprovado = false;
+    public boolean ofertas = false;
+    public Termo(boolean a, boolean b) {
+        aprovado = a;
+        ofertas = b;
+    }
+}
+
 public class Tela_termos extends AppCompatActivity {
 
     @Override
@@ -21,25 +41,25 @@ public class Tela_termos extends AppCompatActivity {
         setContentView(R.layout.activity_tela_termos);
     }
 
-
     public void OK(View view){
-
         CheckBox checkcontinuar = (CheckBox) findViewById(R.id.aceito1);
         CheckBox checkofertas = (CheckBox) findViewById(R.id.aceito2);
 
-        if (checkcontinuar.isChecked() && checkofertas.isChecked()) {
+        final FirebaseDatabase database = FirebaseDatabase.getInstance();
+        DatabaseReference ref = database.getReference();
+        DatabaseReference usersRef = ref.child("Users");
+        DatabaseReference user_ref_uid = usersRef.child(FirebaseAuth.getInstance().getCurrentUser().getUid());
+
+        Map<String, Object> childUpdates = new HashMap<>();
+        childUpdates.put("/aprovado/", checkcontinuar.isChecked());
+        childUpdates.put("/ofertas/",checkcontinuar.isChecked());
+        user_ref_uid.updateChildren(childUpdates);
+
+       if(checkcontinuar.isChecked()){
             Intent it = new Intent(this, TelaPrincipal.class);
             startActivity(it);
             finish();
-
         }
-
-        else if(checkcontinuar.isChecked()){
-            Intent it = new Intent(this, TelaPrincipal.class);
-            startActivity(it);
-            finish();
-        }
-
         else{
             LayoutInflater inflater = getLayoutInflater();
             View layout = inflater.inflate(R.layout.toast_inflate_termos, (ViewGroup) findViewById(R.id.toast_root));
@@ -50,17 +70,5 @@ public class Tela_termos extends AppCompatActivity {
             toast.setView(layout);
             toast.show();
         }
-
-
-
-
-
     }
-
-
-
-
-
-
-
 }

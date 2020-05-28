@@ -20,7 +20,11 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.GoogleAuthProvider;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 public class LoginActivity extends AppCompatActivity {
     private String email;
@@ -28,6 +32,8 @@ public class LoginActivity extends AppCompatActivity {
     private FirebaseAuth firebaseAuth;
     private GoogleSignInClient mGoogleSignInClient;
     private int GOOGLE_SIGN_IN = 123;
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -138,8 +144,23 @@ public class LoginActivity extends AppCompatActivity {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if(task.isSuccessful()){ //Sucesso ao fazer login do usuario
-                            Intent it = new Intent(getApplicationContext(), TelaPrincipal.class);
-                            startActivity(it);
+                            ValueEventListener postListener = new ValueEventListener() {
+                                @Override
+                                public void onDataChange(DataSnapshot dataSnapshot) {
+                                    String laprovado = dataSnapshot.getValue(String.class);
+                                    Intent it;
+                                    it = laprovado != null ? new Intent(getApplicationContext(), TelaPrincipal.class) : new Intent(getApplicationContext(), Tela_termos.class);
+                                    startActivity(it);
+                                }
+                                @Override
+                                public void onCancelled(DatabaseError databaseError) {
+                                    Log.w("ERRO", "loadPost:onCancelled", databaseError.toException());
+                                }
+                            };
+                            FirebaseDatabase.getInstance()
+                                    .getReference("Users")
+                                    .child(FirebaseAuth.getInstance().getCurrentUser().getUid())
+                                    .child("aprovado").addValueEventListener(postListener);
                         }
                         else{
                             Toast toast = Toast.makeText(getApplicationContext(), "E-mail ou Senha inválidos", Toast.LENGTH_LONG);
