@@ -80,25 +80,42 @@ public class LoginActivity extends AppCompatActivity {
         .addOnCompleteListener(LoginActivity.this, new OnCompleteListener<AuthResult>() {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
-                if(task.isSuccessful()){ //Sucesso ao fazer login do usuario
-                    FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-                    FirebaseDatabase.getInstance().getReference("Users")
-                            .child(FirebaseAuth.getInstance().getCurrentUser().getUid()).child("nome")
-                            .setValue(user.getDisplayName()).addOnCompleteListener(new OnCompleteListener<Void>() {
+                if(task.isSuccessful()){ //SUCESSO AO LOGAR COM O GOOGLE - FIREBASEAUTH
+                    ValueEventListener DatabaseListener = new ValueEventListener() {
                         @Override
-                        public void onComplete(@NonNull Task<Void> task) {
-                            if (task.isSuccessful()) {
-                                Intent it = new Intent(getApplicationContext(), TelaPrincipal.class);
+                        public void onDataChange(DataSnapshot dataSnapshot) {
+                            String laprovado = dataSnapshot.getValue() != null ? dataSnapshot.getValue(Boolean.class).toString() : dataSnapshot.getValue(String.class);
+                            if(laprovado == null){ //NUNCA LOGOU NA APLICAÇÂO
+
+                                //PEGA REFERÊNCIA USUÁRIO
+                                FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+
+                                //CRIA OBJETO USER
+                                User NovoUsuario = new User(user.getDisplayName(), user.getEmail(), false, false,user.getUid());
+
+                                //SALVA USUÁRIO
+                                FirebaseDatabase.getInstance().getReference("Users")
+                                        .child(user.getUid()).setValue(NovoUsuario);
+
+                                Intent it =  new Intent(getApplicationContext(), Tela_termos.class);
                                 startActivity(it);
                             }
-                            else {
-                                Toast toast = Toast.makeText(getApplicationContext(), "Cadastro falhou!",
-                                        Toast.LENGTH_SHORT);
-                                toast.show();
-                                finish();
+                            else{ // JÁ LOGOU
+                                //CASO LAPROVADO SEJA FALSE REDIRECT TERMO, SENÃO TELA PRINCIPAL
+                                Intent it = laprovado.equals("false") ? new Intent(getApplicationContext(), Tela_termos.class) : new Intent(getApplicationContext(), TelaPrincipal.class);
+                                startActivity(it);
                             }
                         }
-                    });
+                        @Override
+                        public void onCancelled(DatabaseError databaseError) {
+                            Toast toast = Toast.makeText(getApplicationContext(), "Falhou!", Toast.LENGTH_LONG);
+                            toast.show();
+                        }
+                    };
+                    FirebaseDatabase.getInstance()
+                            .getReference("Users")
+                            .child(FirebaseAuth.getInstance().getCurrentUser().getUid())
+                            .child("aprovado").addValueEventListener(DatabaseListener);
                 }
                 else{
                     Toast toast = Toast.makeText(getApplicationContext(), "Login falhou!", Toast.LENGTH_LONG);
@@ -114,7 +131,7 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     private void verificarUsuarioLogado(FirebaseAuth firebaseAuth){
-        if(firebaseAuth.getCurrentUser() != null){ // Usuario logado
+        if(firebaseAuth.getCurrentUser() != null){ // USUÁRIO LOGADO
             abrirAreaPrincipal();
         }
         else {
@@ -135,6 +152,8 @@ public class LoginActivity extends AppCompatActivity {
 
 
     public void btn_login(View v){
+
+        //DADOS DA TELA
         EditText Editemail = (EditText) findViewById(R.id.input_emaillogin);
         email = Editemail.getText().toString();
         EditText Editsenha = (EditText) findViewById(R.id.input_passwordlogin);
@@ -145,11 +164,11 @@ public class LoginActivity extends AppCompatActivity {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if(task.isSuccessful()){
-                            ValueEventListener aprovedListener = new ValueEventListener() {
+                            ValueEventListener DatabaseListener = new ValueEventListener() {
                                 @Override
                                 public void onDataChange(DataSnapshot dataSnapshot) {
                                     String laprovado = dataSnapshot.getValue() != null ? dataSnapshot.getValue(Boolean.class).toString() : dataSnapshot.getValue(String.class);
-                                    Intent it = laprovado != null ? new Intent(getApplicationContext(), TelaPrincipal.class) : new Intent(getApplicationContext(), Tela_termos.class);
+                                    Intent it = laprovado == null || laprovado.equals("false") ? new Intent(getApplicationContext(), Tela_termos.class) : new Intent(getApplicationContext(), TelaPrincipal.class);
                                     startActivity(it);
                                 }
                                 @Override
@@ -161,7 +180,7 @@ public class LoginActivity extends AppCompatActivity {
                             FirebaseDatabase.getInstance()
                                     .getReference("Users")
                                     .child(FirebaseAuth.getInstance().getCurrentUser().getUid())
-                                    .child("aprovado").addValueEventListener(aprovedListener);
+                                    .child("aprovado").addValueEventListener(DatabaseListener);
                         }
                         else{
                             Toast toast = Toast.makeText(getApplicationContext(), "E-mail ou Senha inválidos", Toast.LENGTH_LONG);

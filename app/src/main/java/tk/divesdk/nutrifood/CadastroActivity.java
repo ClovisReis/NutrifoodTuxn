@@ -36,6 +36,8 @@ public class CadastroActivity extends AppCompatActivity {
     }
 
     public void CriarCadastro(View v) {
+
+        //DADOS DA TELA
         editnome = (EditText) findViewById(R.id.input_name);
         nome = editnome.getText().toString().trim();;
         editemail = (EditText) findViewById(R.id.input_email);
@@ -43,6 +45,7 @@ public class CadastroActivity extends AppCompatActivity {
         editsenha = (EditText) findViewById(R.id.input_password);
         senha = editsenha.getText().toString().trim();
 
+        //VALIDAÇÃO DADOS
         if (nome.isEmpty()) {
             editnome.setError(getString(R.string.input_error_name));
             editnome.requestFocus();
@@ -74,36 +77,42 @@ public class CadastroActivity extends AppCompatActivity {
         }
 
         firebaseAuth = FirebaseAuth.getInstance();
-
         firebaseAuth.createUserWithEmailAndPassword(email,senha)
         .addOnCompleteListener(CadastroActivity.this, new OnCompleteListener<AuthResult>() {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
-                if(task.isSuccessful()){ //Sucesso ao cadastrar usuario
+                if(task.isSuccessful()){ //SUCESSO AO CADASTRAR EMAIL/SENHA FIREBASEAUTH
+
+                    //PEGA REFERÊNCIA USUÁRIO
                     FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+
+                    //ATUALIZA PROFILE (ASSÍCRONO)
                     UserProfileChangeRequest profileUpdates = new UserProfileChangeRequest.Builder()
                             .setDisplayName(nome).build();
                     user.updateProfile(profileUpdates);
 
+                    //CRIA OBJETO USER
+                    User NovoUsuario = new User(nome, user.getEmail(), false, false,user.getUid());
+
+                    //SALVA USUÁRIO
                     FirebaseDatabase.getInstance().getReference("Users")
-                            .child(FirebaseAuth.getInstance().getCurrentUser().getUid()).child("nome")
-                            .setValue(nome).addOnCompleteListener(new OnCompleteListener<Void>() {
-                                @Override
-                                public void onComplete(@NonNull Task<Void> task) {
-                                    if (task.isSuccessful()) {
-                                        Toast toast = Toast.makeText(getApplicationContext(), "Usuario cadastrado com sucesso",
-                                                Toast.LENGTH_SHORT);
-                                        toast.show();
-                                        finish();
-                                    }
-                                    else {
-                                        Toast toast = Toast.makeText(getApplicationContext(), "Cadastro falhou!",
-                                                Toast.LENGTH_SHORT);
-                                        toast.show();
-                                        finish();
-                                    }
-                                }
-                            });
+                            .child(user.getUid()).setValue(NovoUsuario).addOnCompleteListener(new OnCompleteListener<Void>() {
+                        @Override
+                        public void onComplete(@NonNull Task<Void> task) {
+                            if (task.isSuccessful()) {
+                                Toast toast = Toast.makeText(getApplicationContext(), "Usuario cadastrado com sucesso",
+                                        Toast.LENGTH_SHORT);
+                                toast.show();
+                                finish();
+                            }
+                            else {
+                                Toast toast = Toast.makeText(getApplicationContext(), "Cadastro falhou!",
+                                        Toast.LENGTH_SHORT);
+                                toast.show();
+                                finish();
+                            }
+                        }
+                    });
                 }
                 else{
                     String errorCode = ((FirebaseAuthException) task.getException()).getErrorCode();
