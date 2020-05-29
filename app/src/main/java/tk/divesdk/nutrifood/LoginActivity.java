@@ -33,8 +33,6 @@ public class LoginActivity extends AppCompatActivity {
     private GoogleSignInClient mGoogleSignInClient;
     private int GOOGLE_SIGN_IN = 123;
 
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -66,9 +64,12 @@ public class LoginActivity extends AppCompatActivity {
             Task<GoogleSignInAccount> task = GoogleSignIn.getSignedInAccountFromIntent(data);
             try {
                 GoogleSignInAccount account = task.getResult(ApiException.class);
-                if (account != null) firebaseAuthWithGoogle(account);
+                if (account != null) {
+                    firebaseAuthWithGoogle(account);
+                }
             } catch (ApiException e) {
-                Log.w("TAG", "Google sign in failed", e);
+                Toast toast = Toast.makeText(getApplicationContext(), "Login falhou!", Toast.LENGTH_LONG);
+                toast.show();
             }
         }
     }
@@ -143,24 +144,24 @@ public class LoginActivity extends AppCompatActivity {
                 .addOnCompleteListener(LoginActivity.this, new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
-                        if(task.isSuccessful()){ //Sucesso ao fazer login do usuario
-                            ValueEventListener postListener = new ValueEventListener() {
+                        if(task.isSuccessful()){
+                            ValueEventListener aprovedListener = new ValueEventListener() {
                                 @Override
                                 public void onDataChange(DataSnapshot dataSnapshot) {
-                                    String laprovado = dataSnapshot.getValue(String.class);
-                                    Intent it;
-                                    it = laprovado != null ? new Intent(getApplicationContext(), TelaPrincipal.class) : new Intent(getApplicationContext(), Tela_termos.class);
+                                    String laprovado = dataSnapshot.getValue() != null ? dataSnapshot.getValue(Boolean.class).toString() : dataSnapshot.getValue(String.class);
+                                    Intent it = laprovado != null ? new Intent(getApplicationContext(), TelaPrincipal.class) : new Intent(getApplicationContext(), Tela_termos.class);
                                     startActivity(it);
                                 }
                                 @Override
                                 public void onCancelled(DatabaseError databaseError) {
-                                    Log.w("ERRO", "loadPost:onCancelled", databaseError.toException());
+                                    Toast toast = Toast.makeText(getApplicationContext(), "Login falhou!", Toast.LENGTH_LONG);
+                                    toast.show();
                                 }
                             };
                             FirebaseDatabase.getInstance()
                                     .getReference("Users")
                                     .child(FirebaseAuth.getInstance().getCurrentUser().getUid())
-                                    .child("aprovado").addValueEventListener(postListener);
+                                    .child("aprovado").addValueEventListener(aprovedListener);
                         }
                         else{
                             Toast toast = Toast.makeText(getApplicationContext(), "E-mail ou Senha inválidos", Toast.LENGTH_LONG);

@@ -17,6 +17,7 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseAuthException;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.auth.UserProfileChangeRequest;
 import com.google.firebase.database.FirebaseDatabase;
 
 public class CadastroActivity extends AppCompatActivity {
@@ -79,6 +80,11 @@ public class CadastroActivity extends AppCompatActivity {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
                 if(task.isSuccessful()){ //Sucesso ao cadastrar usuario
+                    FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+                    UserProfileChangeRequest profileUpdates = new UserProfileChangeRequest.Builder()
+                            .setDisplayName(nome).build();
+                    user.updateProfile(profileUpdates);
+
                     FirebaseDatabase.getInstance().getReference("Users")
                             .child(FirebaseAuth.getInstance().getCurrentUser().getUid()).child("nome")
                             .setValue(nome).addOnCompleteListener(new OnCompleteListener<Void>() {
@@ -156,7 +162,7 @@ public class CadastroActivity extends AppCompatActivity {
         });
     }
 
-    private void abrirLoginUsuario(){
+    public void abrirLoginUsuario(View v){
         Intent intent = new Intent(CadastroActivity.this, LoginActivity.class);
         startActivity(intent);
         finish();

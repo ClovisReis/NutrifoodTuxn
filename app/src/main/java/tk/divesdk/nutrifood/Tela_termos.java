@@ -24,15 +24,6 @@ import com.google.firebase.database.FirebaseDatabase;
 import java.util.HashMap;
 import java.util.Map;
 
-class Termo {
-    public boolean aprovado = false;
-    public boolean ofertas = false;
-    public Termo(boolean a, boolean b) {
-        aprovado = a;
-        ofertas = b;
-    }
-}
-
 public class Tela_termos extends AppCompatActivity {
 
     @Override
@@ -45,18 +36,17 @@ public class Tela_termos extends AppCompatActivity {
         CheckBox checkcontinuar = (CheckBox) findViewById(R.id.aceito1);
         CheckBox checkofertas = (CheckBox) findViewById(R.id.aceito2);
 
-        final FirebaseDatabase database = FirebaseDatabase.getInstance();
-        DatabaseReference ref = database.getReference();
-        DatabaseReference usersRef = ref.child("Users");
-        DatabaseReference user_ref_uid = usersRef.child(FirebaseAuth.getInstance().getCurrentUser().getUid());
-
-        Map<String, Object> childUpdates = new HashMap<>();
-        childUpdates.put("/aprovado/", checkcontinuar.isChecked());
-        childUpdates.put("/ofertas/",checkcontinuar.isChecked());
-        user_ref_uid.updateChildren(childUpdates);
-
        if(checkcontinuar.isChecked()){
-            Intent it = new Intent(this, TelaPrincipal.class);
+           DatabaseReference user_ref_uid = FirebaseDatabase.getInstance().
+                   getReference().child("Users").
+                   child(FirebaseAuth.getInstance().getCurrentUser().getUid());
+
+           Map<String, Object> childUpdates = new HashMap<>();
+           childUpdates.put("/aprovado/", checkcontinuar.isChecked());
+           childUpdates.put("/ofertas/", checkofertas.isChecked());
+           user_ref_uid.updateChildren(childUpdates);
+
+            Intent it = new Intent(Tela_termos.this, TelaPrincipal.class);
             startActivity(it);
             finish();
         }
