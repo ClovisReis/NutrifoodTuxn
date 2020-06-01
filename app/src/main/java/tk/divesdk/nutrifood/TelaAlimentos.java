@@ -92,7 +92,7 @@ public class TelaAlimentos extends AppCompatActivity  {
                 String retornoAba = TelaAlimentos.this.Aba;
                 String retornopagina = TelaAlimentos.this.Item;
 
-                String $url_json = "http://nutrifoodapi.herokuapp.com/alimentos/"+ URLEncoder.encode (retornoAba, "UTF-8") + "/" + URLEncoder.encode (retornopagina, "UTF-8");
+                String $url_json = "https://nutrifoodapi.herokuapp.com/alimentos/"+ URLEncoder.encode (retornoAba, "UTF-8") + "/" + URLEncoder.encode (retornopagina, "UTF-8");
                 URL url = new URL($url_json);
 
                 urlConnection = (HttpURLConnection) url.openConnection();

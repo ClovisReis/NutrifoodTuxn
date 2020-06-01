@@ -151,7 +151,7 @@ public class TelaPrincipal extends AppCompatActivity  {
         @Override
         protected String doInBackground(Void... params) {
             try {
-                String $url_json = "http://nutrifoodapi.herokuapp.com/" + Aba;
+                String $url_json = "https://nutrifoodapi.herokuapp.com/" + Aba;
                 URL url = new URL($url_json);
 
                 urlConnection = (HttpURLConnection) url.openConnection();
