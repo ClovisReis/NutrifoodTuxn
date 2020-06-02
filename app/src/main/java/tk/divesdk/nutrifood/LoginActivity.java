@@ -3,6 +3,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 import androidx.annotation.NonNull;
@@ -158,6 +159,8 @@ public class LoginActivity extends AppCompatActivity {
         email = Editemail.getText().toString();
         EditText Editsenha = (EditText) findViewById(R.id.input_passwordlogin);
         senha = Editsenha.getText().toString();
+
+
 
         firebaseAuth.signInWithEmailAndPassword(email,senha)
                 .addOnCompleteListener(LoginActivity.this, new OnCompleteListener<AuthResult>() {

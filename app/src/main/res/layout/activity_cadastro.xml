@@ -3,68 +3,80 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/gradiente"
     android:fitsSystemWindows="true">
 
     <LinearLayout
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:paddingTop="56dp"
-        android:paddingLeft="24dp"
-        android:paddingRight="24dp">
+        android:layout_margin="15sp"
+        android:layout_gravity="center_vertical">
 
         <!-- Nome Label -->
+
         <TextView
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:layout_marginBottom="8dp"
-            android:text="Nome"/>
+            android:layout_gravity="center_horizontal"
+            android:text="Cadastro"
+            android:layout_marginTop="15sp"
+            android:textColor="@color/white"
+            android:textSize="40sp">
+
+        </TextView>
+
 
         <EditText android:id="@+id/input_name"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="" />
+            android:layout_marginLeft="10sp"
+            android:drawableLeft="@drawable/usuario"
+            android:layout_marginRight="10sp"
+            android:layout_marginTop="50sp"
+            android:hint="  Nome"
+            android:inputType="textPersonName" />
 
         <!-- Email Label -->
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:layout_marginBottom="8dp"
-            android:text="E-mail"/>
+
 
         <EditText android:id="@+id/input_email"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:inputType="textEmailAddress"
-            android:hint="" />
+            android:layout_marginLeft="10sp"
+            android:layout_marginTop="30sp"
+            android:drawableLeft="@drawable/usuario"
+            android:layout_marginRight="10sp"
+            android:hint="  Nome"/>
 
 
         <!-- Password Label -->
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:layout_marginBottom="8dp"
-            android:text="Senha"/>
+
         <EditText android:id="@+id/input_password"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:inputType="textPassword"
-            android:hint=""/>
+            android:layout_marginTop="30sp"
+            android:layout_marginLeft="10sp"
+            android:drawableLeft="@drawable/cadeado"
+            android:layout_marginRight="10sp"
+            android:hint="  Senha"
+            />
 
 
         <!-- Signup Button -->
         <Button
             android:onClick="CriarCadastro"
-            android:layout_width="match_parent"
+            android:layout_width="185sp"
             android:layout_height="wrap_content"
             android:layout_marginTop="24dp"
             android:layout_marginBottom="24dp"
-            android:padding="12dp"
+            android:layout_gravity="center_horizontal"
+            android:textColor="@color/white"
+            android:background="@drawable/selector_button"
             android:id="@+id/button_cadastrar"
-            android:text="Criar Conta"/>
+            android:text="Criar"/>
 
         <TextView
             android:layout_width="wrap_content"
@@ -72,6 +84,7 @@
             android:textAppearance="?android:attr/textAppearanceSmall"
             android:text="@string/fazer_login"
             android:id="@+id/textView2"
+            android:textColor="@color/white"
             android:layout_below="@+id/button_cadastrar"
             android:layout_centerHorizontal="true"
             android:onClick="abrirLoginUsuario" />

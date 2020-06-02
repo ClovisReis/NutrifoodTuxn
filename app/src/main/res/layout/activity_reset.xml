@@ -3,6 +3,7 @@
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/gradiente"
     android:fitsSystemWindows="true">
 
     <LinearLayout
@@ -10,26 +11,40 @@
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_margin="15sp"
         android:orientation="vertical"
+        android:layout_gravity="center_vertical"
         tools:context=".ResetSenha"
-        android:paddingLeft="24dp"
-        android:paddingTop="56dp"
-        android:paddingRight="24dp">
+        >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:text="Recuperar Senha"
+            android:textColor="@color/white"
+            android:textSize="40sp"/>
 
         <EditText
+            android:layout_marginLeft="10sp"
+            android:drawableLeft="@drawable/usuario"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/editreset"
+            android:layout_marginRight="10sp"
+            android:layout_marginTop="50sp"
+            android:hint="  E-mail"
             android:inputType="textEmailAddress">
         </EditText>
 
         <Button
-            android:layout_width="match_parent"
+            android:layout_width="190sp"
             android:layout_height="wrap_content"
             android:onClick="reset"
             android:layout_marginTop="24dp"
-            android:layout_marginBottom="24dp"
-            android:padding="12dp"
+            android:textColor="@color/white"
+            android:layout_gravity="center_horizontal"
+            android:background="@drawable/selector_button"
             android:text="Enviar" />
     </LinearLayout>
 </ScrollView>
