@@ -40,7 +40,7 @@
             android:id="@+id/input_emaillogin"
             android:layout_width="match_parent"
             android:layout_marginLeft="10sp"
-            android:drawableLeft="@drawable/usuario"
+            android:drawableLeft="@drawable/msg"
             android:layout_marginTop="50sp"
 
             android:layout_marginRight="10sp"

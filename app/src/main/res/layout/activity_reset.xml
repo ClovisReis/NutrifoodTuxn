@@ -17,17 +17,9 @@
         tools:context=".ResetSenha"
         >
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:text="Recuperar Senha"
-            android:textColor="@color/white"
-            android:textSize="40sp"/>
-
         <EditText
             android:layout_marginLeft="10sp"
-            android:drawableLeft="@drawable/usuario"
+            android:drawableLeft="@drawable/msg"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/editreset"
