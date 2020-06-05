@@ -73,6 +73,18 @@
             android:hint="  Senha"
             />
 
+        <EditText android:id="@+id/input_password_confirm"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="textPassword"
+            android:layout_marginTop="30sp"
+            android:layout_marginLeft="10sp"
+            android:drawableLeft="@drawable/cadeado"
+            android:layout_marginRight="10sp"
+            android:hint="  Confirme a Senha"
+            />
+
+
 
         <!-- Signup Button -->
         <Button

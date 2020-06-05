@@ -9,12 +9,13 @@
     <string name="botao_logar">Login</string>
     <string name="crie_conta">Não tem conta?</string>
     <string name="botao_cadastro">Cadastrar</string>
-    <string name="fazer_login">Já tem conta? faça o login!!</string>
+    <string name="fazer_login">Já tem conta? Faça o login.</string>
 
-    <string name="input_error_name">name required</string>
-    <string name="input_error_email">email required</string>
-    <string name="input_error_password">password required</string>
-
-    <string name="input_error_password_length">password should be atleast 6 characters long</string>
-    <string name="input_error_email_invalid">enter a valid email</string>
+    <string name="input_error_name">Campo Nome obrigatório.</string>
+    <string name="input_error_email">Campo E-mail obrigatório.</string>
+    <string name="input_error_password">Campo Senha obrigatório.</string>
+    <string name="input_error_password_length">Insira uma Senha de 6 Dígitos</string>
+    <string name="input_error_email_invalid">Por favor adicione um e-mail válido.</string>
+    <string name="input_error_password_confirm">Senhas diferentes.</string>
+    <string name="input_error_password_presence">Por favor confirme a senha.</string>
 </resources>

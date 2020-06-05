@@ -99,7 +99,7 @@
             android:gravity="center"
             android:textColor="@color/white"
             android:onClick="abrirCadastroUsuario"
-            android:text="Não tem conta ainda? Crie já"
+            android:text="Não tem conta ainda? Efetue o Cadastro"
             android:textSize="16dip" />
 
         <TextView

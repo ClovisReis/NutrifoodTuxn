@@ -1,11 +1,15 @@
 package tk.divesdk.nutrifood;
+
+import android.content.Context;
 import android.content.Intent;
+import android.net.ConnectivityManager;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
+
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -34,28 +38,47 @@ public class LoginActivity extends AppCompatActivity {
     private GoogleSignInClient mGoogleSignInClient;
     private int GOOGLE_SIGN_IN = 123;
 
+    //VALIDAÇÃO
+    private boolean ErroSaveuser = false;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
-        firebaseAuth = FirebaseAuth.getInstance();
+        if (isOnline()) {
+            firebaseAuth = FirebaseAuth.getInstance();
 
-        // Configure Google Sign In
-        GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
-                .requestIdToken(getString(R.string.default_web_client_id))
-                .requestEmail()
-                .build();
+            // Configure Google
+            GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+                    .requestIdToken(getString(R.string.default_web_client_id))
+                    .requestEmail()
+                    .build();
 
-        mGoogleSignInClient = GoogleSignIn.getClient(this, gso);
+            mGoogleSignInClient = GoogleSignIn.getClient(this, gso);
 
-        //Verificar se o usuário está logado
-        verificarUsuarioLogado(firebaseAuth);
+            //Verificar se o usuário está logado
+            verificarUsuarioLogado(firebaseAuth);
+        } else {
+            Toast toast = Toast.makeText(getApplicationContext(), "Conecte-se a internet para efetuar o login.", Toast.LENGTH_LONG);
+            toast.show();
+        }
+    }
+
+    public boolean isOnline() {
+        ConnectivityManager manager = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+        return manager.getActiveNetworkInfo() != null &&
+                manager.getActiveNetworkInfo().isConnectedOrConnecting();
     }
 
     public void btn_login_google(View view) {
-        Intent signInIntent = mGoogleSignInClient.getSignInIntent();
-        startActivityForResult(signInIntent, GOOGLE_SIGN_IN);
+        if (isOnline()) {
+            Intent signInIntent = mGoogleSignInClient.getSignInIntent();
+            startActivityForResult(signInIntent, GOOGLE_SIGN_IN);
+        } else {
+            Toast toast = Toast.makeText(getApplicationContext(), "Conecte-se a internet para efetuar o login.", Toast.LENGTH_LONG);
+            toast.show();
+        }
     }
 
     @Override
@@ -69,114 +92,71 @@ public class LoginActivity extends AppCompatActivity {
                     firebaseAuthWithGoogle(account);
                 }
             } catch (ApiException e) {
-                Toast toast = Toast.makeText(getApplicationContext(), "Login falhou!", Toast.LENGTH_LONG);
+                Toast toast = Toast.makeText(getApplicationContext(), "Ocorreu uma falha no login, tente novamente.", Toast.LENGTH_LONG);
                 toast.show();
             }
         }
     }
 
     private void firebaseAuthWithGoogle(GoogleSignInAccount acct) {
+        ErroSaveuser = false;
+
         AuthCredential credential = GoogleAuthProvider.getCredential(acct.getIdToken(), null);
         firebaseAuth.signInWithCredential(credential)
-        .addOnCompleteListener(LoginActivity.this, new OnCompleteListener<AuthResult>() {
-            @Override
-            public void onComplete(@NonNull Task<AuthResult> task) {
-                if(task.isSuccessful()){ //SUCESSO AO LOGAR COM O GOOGLE - FIREBASEAUTH
-                    ValueEventListener DatabaseListener = new ValueEventListener() {
-                        @Override
-                        public void onDataChange(DataSnapshot dataSnapshot) {
-                            String laprovado = dataSnapshot.getValue() != null ? dataSnapshot.getValue(Boolean.class).toString() : dataSnapshot.getValue(String.class);
-                            if(laprovado == null){ //NUNCA LOGOU NA APLICAÇÂO
-
-                                //PEGA REFERÊNCIA USUÁRIO
-                                FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-
-                                //CRIA OBJETO USER
-                                User NovoUsuario = new User(user.getDisplayName(), user.getEmail(), false, false,user.getUid());
-
-                                //SALVA USUÁRIO
-                                FirebaseDatabase.getInstance().getReference("Users")
-                                        .child(user.getUid()).setValue(NovoUsuario);
-
-                                Intent it =  new Intent(getApplicationContext(), Tela_termos.class);
-                                startActivity(it);
-                            }
-                            else{ // JÁ LOGOU
-                                //CASO LAPROVADO SEJA FALSE REDIRECT TERMO, SENÃO TELA PRINCIPAL
-                                Intent it = laprovado.equals("false") ? new Intent(getApplicationContext(), Tela_termos.class) : new Intent(getApplicationContext(), TelaPrincipal.class);
-                                startActivity(it);
-                            }
-                        }
-                        @Override
-                        public void onCancelled(DatabaseError databaseError) {
-                            Toast toast = Toast.makeText(getApplicationContext(), "Falhou!", Toast.LENGTH_LONG);
-                            toast.show();
-                        }
-                    };
-                    FirebaseDatabase.getInstance()
-                            .getReference("Users")
-                            .child(FirebaseAuth.getInstance().getCurrentUser().getUid())
-                            .child("aprovado").addValueEventListener(DatabaseListener);
-                }
-                else{
-                    Toast toast = Toast.makeText(getApplicationContext(), "Login falhou!", Toast.LENGTH_LONG);
-                    toast.show();
-                }
-            }
-        });
-    }
-
-    public void abrirCadastroUsuario(View view){
-        Intent intent = new Intent(LoginActivity.this, CadastroActivity.class);
-        startActivity( intent );
-    }
-
-    private void verificarUsuarioLogado(FirebaseAuth firebaseAuth){
-        if(firebaseAuth.getCurrentUser() != null){ // USUÁRIO LOGADO
-            abrirAreaPrincipal();
-        }
-        else {
-            setContentView(R.layout.activity_login);
-        }
-    }
-
-    private void abrirAreaPrincipal(){
-        Intent intent = new Intent(LoginActivity.this, TelaPrincipal.class);
-        startActivity( intent );
-        finish();
-    }
-
-    public void forgetpassword(View v){
-        Intent it = new Intent(getApplicationContext(),Reset.class);
-        startActivity(it);
-    }
-
-
-    public void btn_login(View v){
-
-        //DADOS DA TELA
-        EditText Editemail = (EditText) findViewById(R.id.input_emaillogin);
-        email = Editemail.getText().toString();
-        EditText Editsenha = (EditText) findViewById(R.id.input_passwordlogin);
-        senha = Editsenha.getText().toString();
-
-
-
-        firebaseAuth.signInWithEmailAndPassword(email,senha)
                 .addOnCompleteListener(LoginActivity.this, new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
-                        if(task.isSuccessful()){
+                        if (task.isSuccessful()) { //SUCESSO AO LOGAR COM O GOOGLE - FIREBASEAUTH
                             ValueEventListener DatabaseListener = new ValueEventListener() {
                                 @Override
                                 public void onDataChange(DataSnapshot dataSnapshot) {
                                     String laprovado = dataSnapshot.getValue() != null ? dataSnapshot.getValue(Boolean.class).toString() : dataSnapshot.getValue(String.class);
-                                    Intent it = laprovado == null || laprovado.equals("false") ? new Intent(getApplicationContext(), Tela_termos.class) : new Intent(getApplicationContext(), TelaPrincipal.class);
-                                    startActivity(it);
+                                    if (laprovado == null) { //NUNCA LOGOU NA APLICAÇÂO
+
+                                        //PEGA REFERÊNCIA USUÁRIO
+                                        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+
+                                        if (user != null) {
+                                            //CRIA OBJETO USER
+                                            User NovoUsuario = new User(user.getDisplayName(), user.getEmail(), false, false, user.getUid());
+
+                                            //SALVA USUÁRIO
+                                            FirebaseDatabase.getInstance().getReference("Users")
+                                                    .child(user.getUid()).setValue(NovoUsuario).addOnCompleteListener(new OnCompleteListener<Void>() {
+                                                @Override
+                                                public void onComplete(@NonNull Task<Void> task) {
+                                                    if (!task.isSuccessful()) {
+                                                        ErroSaveuser = true;
+                                                    }
+                                                }
+                                            });
+
+                                            if (ErroSaveuser) {
+                                                Toast toast = Toast.makeText(getApplicationContext(), "Ocorreu uma falha no login, tente novamente.", Toast.LENGTH_LONG);
+                                                toast.show();
+                                            } else {
+                                                user.delete();
+                                                Toast toast = Toast.makeText(getApplicationContext(), "Ocorreu uma falha no login, tente novamente.", Toast.LENGTH_LONG);
+                                                toast.show();
+                                            }
+
+                                            Intent it = new Intent(getApplicationContext(), Tela_termos.class);
+                                            startActivity(it);
+                                        } else {
+                                            Toast toast = Toast.makeText(getApplicationContext(), "Ocorreu uma falha no login, tente novamente.", Toast.LENGTH_LONG);
+                                            toast.show();
+                                        }
+
+                                    } else { // JÁ LOGOU
+                                        //CASO LAPROVADO SEJA FALSE REDIRECT TERMO, SENÃO TELA PRINCIPAL
+                                        Intent it = laprovado.equals("false") ? new Intent(getApplicationContext(), Tela_termos.class) : new Intent(getApplicationContext(), TelaPrincipal.class);
+                                        startActivity(it);
+                                    }
                                 }
+
                                 @Override
                                 public void onCancelled(DatabaseError databaseError) {
-                                    Toast toast = Toast.makeText(getApplicationContext(), "Login falhou!", Toast.LENGTH_LONG);
+                                    Toast toast = Toast.makeText(getApplicationContext(), "Ocorreu uma falha no login, tente novamente.", Toast.LENGTH_LONG);
                                     toast.show();
                                 }
                             };
@@ -184,13 +164,85 @@ public class LoginActivity extends AppCompatActivity {
                                     .getReference("Users")
                                     .child(FirebaseAuth.getInstance().getCurrentUser().getUid())
                                     .child("aprovado").addValueEventListener(DatabaseListener);
-                        }
-                        else{
-                            Toast toast = Toast.makeText(getApplicationContext(), "E-mail ou Senha inválidos", Toast.LENGTH_LONG);
+                        } else {
+                            Toast toast = Toast.makeText(getApplicationContext(), "Ocorreu uma falha no login, tente novamente.", Toast.LENGTH_LONG);
                             toast.show();
                         }
                     }
                 });
+    }
+
+    public void abrirCadastroUsuario(View view) {
+        Intent intent = new Intent(LoginActivity.this, CadastroActivity.class);
+        startActivity(intent);
+    }
+
+    private void verificarUsuarioLogado(FirebaseAuth firebaseAuth) {
+        if (firebaseAuth.getCurrentUser() != null) { // USUÁRIO LOGADO
+            abrirAreaPrincipal();
+        } else {
+            setContentView(R.layout.activity_login);
+        }
+    }
+
+    private void abrirAreaPrincipal() {
+        Intent intent = new Intent(LoginActivity.this, TelaPrincipal.class);
+        startActivity(intent);
+        finish();
+    }
+
+    public void forgetpassword(View v) {
+        if (isOnline()) {
+            Intent it = new Intent(getApplicationContext(), Reset.class);
+            startActivity(it);
+        } else {
+            Toast toast = Toast.makeText(getApplicationContext(), "Conecte-se a internet para efetuar o login.", Toast.LENGTH_LONG);
+            toast.show();
+        }
+    }
+
+
+    public void btn_login(View v) {
+        if (isOnline()) {
+            //DADOS DA TELA
+            EditText Editemail = (EditText) findViewById(R.id.input_emaillogin);
+            email = Editemail.getText().toString();
+            EditText Editsenha = (EditText) findViewById(R.id.input_passwordlogin);
+            senha = Editsenha.getText().toString();
+
+            firebaseAuth.signInWithEmailAndPassword(email, senha)
+                    .addOnCompleteListener(LoginActivity.this, new OnCompleteListener<AuthResult>() {
+                        @Override
+                        public void onComplete(@NonNull Task<AuthResult> task) {
+                            if (task.isSuccessful()) {
+                                ValueEventListener DatabaseListener = new ValueEventListener() {
+                                    @Override
+                                    public void onDataChange(DataSnapshot dataSnapshot) {
+                                        String laprovado = dataSnapshot.getValue() != null ? dataSnapshot.getValue(Boolean.class).toString() : dataSnapshot.getValue(String.class);
+                                        Intent it = laprovado == null || laprovado.equals("false") ? new Intent(getApplicationContext(), Tela_termos.class) : new Intent(getApplicationContext(), TelaPrincipal.class);
+                                        startActivity(it);
+                                    }
+
+                                    @Override
+                                    public void onCancelled(DatabaseError databaseError) {
+                                        Toast toast = Toast.makeText(getApplicationContext(), "Login falhou!", Toast.LENGTH_LONG);
+                                        toast.show();
+                                    }
+                                };
+                                FirebaseDatabase.getInstance()
+                                        .getReference("Users")
+                                        .child(FirebaseAuth.getInstance().getCurrentUser().getUid())
+                                        .child("aprovado").addValueEventListener(DatabaseListener);
+                            } else {
+                                Toast toast = Toast.makeText(getApplicationContext(), "E-mail ou Senha inválidos", Toast.LENGTH_LONG);
+                                toast.show();
+                            }
+                        }
+                    });
+        } else {
+            Toast toast = Toast.makeText(getApplicationContext(), "Conecte-se a internet para efetuar o login.", Toast.LENGTH_LONG);
+            toast.show();
+        }
     }
 
 }

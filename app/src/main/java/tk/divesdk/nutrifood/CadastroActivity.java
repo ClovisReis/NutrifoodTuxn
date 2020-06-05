@@ -1,6 +1,8 @@
 package tk.divesdk.nutrifood;
 
+import android.content.Context;
 import android.content.Intent;
+import android.net.ConnectivityManager;
 import android.os.Bundle;
 import android.util.Log;
 import android.util.Patterns;
@@ -23,11 +25,17 @@ import com.google.firebase.database.FirebaseDatabase;
 public class CadastroActivity extends AppCompatActivity {
     private String email;
     private String senha;
+    private String senha_confirm;
     private String nome;
     private EditText editemail;
     private EditText editsenha;
+    private EditText editsenha_confirm;
     private EditText editnome;
     private FirebaseAuth firebaseAuth;
+
+    //VALIDAÇÃO
+    private boolean ErroProfile = false;
+    private boolean ErroSaveUser = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,141 +45,158 @@ public class CadastroActivity extends AppCompatActivity {
 
     public void CriarCadastro(View v) {
 
-        //DADOS DA TELA
-        editnome = (EditText) findViewById(R.id.input_name);
-        nome = editnome.getText().toString().trim();;
-        editemail = (EditText) findViewById(R.id.input_email);
-        email = editemail.getText().toString().trim();;
-        editsenha = (EditText) findViewById(R.id.input_password);
-        senha = editsenha.getText().toString().trim();
+        if (isOnline()) {
 
-        //VALIDAÇÃO DADOS
-        if (nome.isEmpty()) {
-            editnome.setError(getString(R.string.input_error_name));
-            editnome.requestFocus();
-            return;
-        }
+            //DADOS DA TELA
+            editnome = (EditText) findViewById(R.id.input_name);
+            nome = editnome.getText().toString().trim();
+            ;
+            editemail = (EditText) findViewById(R.id.input_email);
+            email = editemail.getText().toString().trim();
+            ;
+            editsenha = (EditText) findViewById(R.id.input_password);
+            senha = editsenha.getText().toString().trim();
+            editsenha_confirm = (EditText) findViewById(R.id.input_password_confirm);
+            senha_confirm = editsenha_confirm.getText().toString().trim();
 
-        if (email.isEmpty()) {
-            editemail.setError(getString(R.string.input_error_email));
-            editemail.requestFocus();
-            return;
-        }
+            //VALIDAÇÃO DADOS
+            if (nome.isEmpty()) {
+                editnome.setError(getString(R.string.input_error_name));
+                editnome.requestFocus();
+                return;
+            }
 
-        if (!Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
-            editemail.setError(getString(R.string.input_error_email_invalid));
-            editemail.requestFocus();
-            return;
-        }
+            if (email.isEmpty()) {
+                editemail.setError(getString(R.string.input_error_email));
+                editemail.requestFocus();
+                return;
+            }
 
-        if (senha.isEmpty()) {
-            editsenha.setError(getString(R.string.input_error_password));
-            editsenha.requestFocus();
-            return;
-        }
+            if (!Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
+                editemail.setError(getString(R.string.input_error_email_invalid));
+                editemail.requestFocus();
+                return;
+            }
 
-        if (senha.length() < 6) {
-            editsenha.setError(getString(R.string.input_error_password_length));
-            editsenha.requestFocus();
-            return;
-        }
+            if (senha.isEmpty()) {
+                editsenha.setError(getString(R.string.input_error_password));
+                editsenha.requestFocus();
+                return;
+            }
 
-        firebaseAuth = FirebaseAuth.getInstance();
-        firebaseAuth.createUserWithEmailAndPassword(email,senha)
-        .addOnCompleteListener(CadastroActivity.this, new OnCompleteListener<AuthResult>() {
-            @Override
-            public void onComplete(@NonNull Task<AuthResult> task) {
-                if(task.isSuccessful()){ //SUCESSO AO CADASTRAR EMAIL/SENHA FIREBASEAUTH
+            if (senha.length() < 6) {
+                editsenha.setError(getString(R.string.input_error_password_length));
+                editsenha.requestFocus();
+                return;
+            }
 
-                    //PEGA REFERÊNCIA USUÁRIO
-                    FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+            if (senha_confirm.isEmpty()) {
+                editsenha.setError(getString(R.string.input_error_password_presence));
+                editsenha.requestFocus();
+                return;
+            }
 
-                    //ATUALIZA PROFILE (ASSÍCRONO)
-                    UserProfileChangeRequest profileUpdates = new UserProfileChangeRequest.Builder()
-                            .setDisplayName(nome).build();
-                    user.updateProfile(profileUpdates);
+            if (!senha.equals(senha_confirm)) {
+                editsenha.setError(getString(R.string.input_error_password_confirm));
+                editsenha.requestFocus();
+                return;
+            }
 
-                    //CRIA OBJETO USER
-                    User NovoUsuario = new User(nome, user.getEmail(), false, false,user.getUid());
+            ErroProfile = false;
+            ErroSaveUser = false;
 
-                    //SALVA USUÁRIO
-                    FirebaseDatabase.getInstance().getReference("Users")
-                            .child(user.getUid()).setValue(NovoUsuario).addOnCompleteListener(new OnCompleteListener<Void>() {
+            firebaseAuth = FirebaseAuth.getInstance();
+            firebaseAuth.createUserWithEmailAndPassword(email, senha)
+                    .addOnCompleteListener(CadastroActivity.this, new OnCompleteListener<AuthResult>() {
                         @Override
-                        public void onComplete(@NonNull Task<Void> task) {
-                            if (task.isSuccessful()) {
-                                Toast toast = Toast.makeText(getApplicationContext(), "Usuario cadastrado com sucesso",
-                                        Toast.LENGTH_SHORT);
-                                toast.show();
-                                finish();
-                            }
-                            else {
-                                Toast toast = Toast.makeText(getApplicationContext(), "Cadastro falhou!",
-                                        Toast.LENGTH_SHORT);
-                                toast.show();
-                                finish();
+                        public void onComplete(@NonNull Task<AuthResult> task) {
+                            if (task.isSuccessful()) { //SUCESSO AO CADASTRAR EMAIL/SENHA FIREBASEAUTH
+
+                                //PEGA REFERÊNCIA USUÁRIO
+                                FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+
+                                //ATUALIZA PROFILE (ASSÍCRONO)
+                                UserProfileChangeRequest profileUpdates = new UserProfileChangeRequest.Builder()
+                                        .setDisplayName(nome).build();
+                                user.updateProfile(profileUpdates).addOnCompleteListener(new OnCompleteListener<Void>() {
+                                    @Override
+                                    public void onComplete(@NonNull Task<Void> task) {
+                                        if (!task.isSuccessful()) {
+                                            ErroProfile = true;
+                                        }
+                                    }
+                                });
+
+                                //CRIA OBJETO USER
+                                User NovoUsuario = new User(nome, user.getEmail(), false, false, user.getUid());
+
+                                //SALVA USUÁRIO
+                                FirebaseDatabase.getInstance().getReference("Users")
+                                        .child(user.getUid()).setValue(NovoUsuario).addOnCompleteListener(new OnCompleteListener<Void>() {
+                                    @Override
+                                    public void onComplete(@NonNull Task<Void> task) {
+                                        if (!task.isSuccessful()) {
+                                            ErroSaveUser = true;
+                                        }
+                                    }
+                                });
+
+                                if (ErroProfile || ErroSaveUser) {
+                                    user.delete();
+                                    Toast toast = Toast.makeText(getApplicationContext(), "Ocorreu uma falha no cadastro, tente novamente.",
+                                            Toast.LENGTH_SHORT);
+                                    toast.show();
+                                    finish();
+                                } else {
+                                    Toast toast = Toast.makeText(getApplicationContext(), "Usuário cadastrado com sucesso.",
+                                            Toast.LENGTH_SHORT);
+                                    toast.show();
+                                    finish();
+                                }
+                            } else {
+                                String errorCode = ((FirebaseAuthException) task.getException()).getErrorCode();
+                                switch (errorCode) {
+                                    case "ERROR_INVALID_EMAIL":
+                                        Toast.makeText(CadastroActivity.this, "O endereço de email está mal formatado.", Toast.LENGTH_LONG).show();
+                                        break;
+                                    case "ERROR_WRONG_PASSWORD":
+                                        Toast.makeText(CadastroActivity.this, "A senha é inválida.", Toast.LENGTH_LONG).show();
+                                        break;
+                                    case "ERROR_ACCOUNT_EXISTS_WITH_DIFFERENT_CREDENTIAL":
+                                        Toast.makeText(CadastroActivity.this, "Já existe uma conta com o mesmo endereço de email, mas com credenciais de login diferentes. Faça login usando um provedor associado a este endereço de e-mail.", Toast.LENGTH_LONG).show();
+                                        break;
+                                    case "ERROR_EMAIL_ALREADY_IN_USE":
+                                        Toast.makeText(CadastroActivity.this, "O endereço de e-mail já está sendo usado por outra conta.", Toast.LENGTH_LONG).show();
+                                        break;
+                                    case "ERROR_CREDENTIAL_ALREADY_IN_USE":
+                                        Toast.makeText(CadastroActivity.this, "Essa credencial já está associada a uma conta de usuário diferente.\n", Toast.LENGTH_LONG).show();
+                                        break;
+                                    case "ERROR_USER_DISABLED":
+                                        Toast.makeText(CadastroActivity.this, "A conta do usuário foi desativada por um administrador.", Toast.LENGTH_LONG).show();
+                                        break;
+                                    case "ERROR_WEAK_PASSWORD":
+                                        Toast.makeText(CadastroActivity.this, "A senha é inválida, deve conter no mínimo 6 caracteres", Toast.LENGTH_LONG).show();
+                                        break;
+                                    default:
+                                        Toast.makeText(CadastroActivity.this, "Ocorreu uma falha no cadastro, tente novamente.", Toast.LENGTH_LONG).show();
+                                        break;
+                                }
                             }
                         }
                     });
-                }
-                else{
-                    String errorCode = ((FirebaseAuthException) task.getException()).getErrorCode();
-                    switch (errorCode) {
-                        case "ERROR_INVALID_CUSTOM_TOKEN":
-                            Toast.makeText(CadastroActivity.this, "O formato do token personalizado está incorreto. Por favor, verifique a documentação.", Toast.LENGTH_LONG).show();
-                            break;
-                        case "ERROR_CUSTOM_TOKEN_MISMATCH":
-                            Toast.makeText(CadastroActivity.this, "O token personalizado corresponde a um público diferente.", Toast.LENGTH_LONG).show();
-                            break;
-                        case "ERROR_INVALID_CREDENTIAL":
-                            Toast.makeText(CadastroActivity.this, "A credencial de autenticação fornecida está incorreta ou expirou.", Toast.LENGTH_LONG).show();
-                            break;
-                        case "ERROR_INVALID_EMAIL":
-                            Toast.makeText(CadastroActivity.this, "O endereço de email está mal formatado.", Toast.LENGTH_LONG).show();
-                            break;
-                        case "ERROR_WRONG_PASSWORD":
-                            Toast.makeText(CadastroActivity.this, "A senha é inválida ou o usuário não possui uma senha.", Toast.LENGTH_LONG).show();
-                            break;
-                        case "ERROR_USER_MISMATCH":
-                            Toast.makeText(CadastroActivity.this, "As credenciais fornecidas não correspondem ao usuário conectado anteriormente.", Toast.LENGTH_LONG).show();
-                            break;
-                        case "ERROR_REQUIRES_RECENT_LOGIN":
-                            Toast.makeText(CadastroActivity.this, "Esta operação é sensível e requer autenticação recente. Efetue login novamente antes de tentar novamente esta solicitação.", Toast.LENGTH_LONG).show();
-                            break;
-                        case "ERROR_ACCOUNT_EXISTS_WITH_DIFFERENT_CREDENTIAL":
-                            Toast.makeText(CadastroActivity.this, "Já existe uma conta com o mesmo endereço de email, mas com credenciais de login diferentes. Faça login usando um provedor associado a este endereço de email.", Toast.LENGTH_LONG).show();
-                            break;
-                        case "ERROR_EMAIL_ALREADY_IN_USE":
-                            Toast.makeText(CadastroActivity.this, "O endereço de email já está sendo usado por outra conta.", Toast.LENGTH_LONG).show();
-                            break;
-                        case "ERROR_CREDENTIAL_ALREADY_IN_USE":
-                            Toast.makeText(CadastroActivity.this, "Essa credencial já está associada a uma conta de usuário diferente.\n", Toast.LENGTH_LONG).show();
-                            break;
-                        case "ERROR_USER_DISABLED":
-                            Toast.makeText(CadastroActivity.this, "A conta do usuário foi desativada por um administrador.", Toast.LENGTH_LONG).show();
-                            break;
-                        case "ERROR_USER_TOKEN_EXPIRED":
-                            Toast.makeText(CadastroActivity.this, "A credencial do usuário não é mais válida. O usuário deve entrar novamente.", Toast.LENGTH_LONG).show();
-                            break;
-                        case "ERROR_USER_NOT_FOUND":
-                            Toast.makeText(CadastroActivity.this, "Não há registro de usuário correspondente a esse identificador. O usuário pode ter sido excluído.", Toast.LENGTH_LONG).show();
-                            break;
-                        case "ERROR_INVALID_USER_TOKEN":
-                            Toast.makeText(CadastroActivity.this, "A credencial do usuário não é mais válida. O usuário deve entrar novamente.", Toast.LENGTH_LONG).show();
-                            break;
-                        case "ERROR_OPERATION_NOT_ALLOWED":
-                            Toast.makeText(CadastroActivity.this, "Esta operação não é permitida. Você deve ativar este serviço no console.", Toast.LENGTH_LONG).show();
-                            break;
-                        case "ERROR_WEAK_PASSWORD":
-                            Toast.makeText(CadastroActivity.this, "A senha é inválida, deve conter no mínimo 6 caracteres", Toast.LENGTH_LONG).show();
-                            break;
-                    }
-                }
-            }
-        });
+        } else {
+            Toast toast = Toast.makeText(getApplicationContext(), "Conecte-se a internet para efetuar o cadastro.", Toast.LENGTH_LONG);
+            toast.show();
+        }
     }
 
-    public void abrirLoginUsuario(View v){
+    public boolean isOnline() {
+        ConnectivityManager manager = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+        return manager.getActiveNetworkInfo() != null &&
+                manager.getActiveNetworkInfo().isConnectedOrConnecting();
+    }
+
+    public void abrirLoginUsuario(View v) {
         Intent intent = new Intent(CadastroActivity.this, LoginActivity.class);
         startActivity(intent);
         finish();
