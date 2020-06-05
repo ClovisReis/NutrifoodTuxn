@@ -10,8 +10,7 @@
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="15sp"
-        android:layout_gravity="center_vertical">
+        android:layout_margin="15sp">
 
         <!-- Nome Label -->
 
@@ -98,23 +97,6 @@
             android:background="@drawable/selector_button"
             android:id="@+id/button_cadastrar"
             android:text="Criar"/>
-
-        <View
-            android:layout_width="260sp"
-            android:layout_gravity="center_horizontal"
-            android:layout_height="1dp"
-            android:background="@color/white"
-            android:focusable="false" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/fazer_login"
-            android:id="@+id/textView2"
-            android:textColor="@color/white"
-            android:layout_marginTop="10sp"
-            android:layout_gravity="center_horizontal"
-            android:onClick="abrirLoginUsuario" />
 
     </LinearLayout>
 </ScrollView>
