@@ -1,0 +1,61 @@
+<LinearLayout
+
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:layout_margin="15sp"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:text="Assunto"
+        android:layout_marginTop="15sp"
+        android:textColor="@color/white"
+        android:textSize="40sp">
+
+    </TextView>
+
+
+    <EditText
+        android:id="@+id/input_subject"
+        android:layout_width="match_parent"
+        android:layout_marginLeft="10sp"
+        android:layout_marginTop="50sp"
+        android:layout_marginRight="10sp"
+        android:layout_height="40sp"
+        android:inputType="textEmailAddress" />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:text="Mensagem"
+        android:layout_marginTop="15sp"
+        android:textColor="@color/white"
+        android:textSize="40sp">
+    </TextView>
+
+
+    <EditText
+        android:id="@+id/input_menssage"
+        android:layout_width="match_parent"
+        android:layout_marginLeft="10sp"
+        android:layout_marginTop="50sp"
+        android:layout_marginRight="10sp"
+        android:layout_height="40sp"
+        android:inputType="textEmailAddress" />
+
+    <Button
+        android:layout_width="185sp"
+        android:id="@+id/b1"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:textColor="@color/white"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginBottom="24dp"
+        android:onClick="btn_send"
+        android:text="Enviar" />
+
+</LinearLayout>

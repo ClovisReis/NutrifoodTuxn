@@ -74,6 +74,8 @@ public class TelaPrincipal extends AppCompatActivity  {
                 Intent intent;
                 switch (menuItem.getItemId()) {
                     case R.id.contato:
+                        intent = new Intent(TelaPrincipal.this, TelaContato.class);
+                        startActivity(intent);
                         break;
                     case R.id.sobre:
                         intent = new Intent(TelaPrincipal.this, tela_sobre.class);

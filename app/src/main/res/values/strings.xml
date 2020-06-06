@@ -18,4 +18,7 @@
     <string name="input_error_email_invalid">Por favor adicione um e-mail válido.</string>
     <string name="input_error_password_confirm">Senhas diferentes.</string>
     <string name="input_error_password_presence">Por favor confirme a senha.</string>
+
+    <string name="input_subject">Campo assunto obrigatório.</string>
+    <string name="input_message">Campo mensagem obrigatório.</string>
 </resources>
