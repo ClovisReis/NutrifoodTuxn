@@ -11,6 +11,7 @@ import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.webkit.WebView;
 import android.widget.CheckBox;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -34,6 +35,9 @@ public class TelaTermos extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_tela_termos);
+
+        WebView webView = (WebView) findViewById(R.id.wv_content);
+        webView.loadUrl("https://blogapptestblog.wordpress.com/politica-de-privacidade/");
     }
 
     public boolean isOnline() {

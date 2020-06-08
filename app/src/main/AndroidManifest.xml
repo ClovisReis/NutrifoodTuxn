@@ -13,7 +13,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".TelaContato"></activity>
-        <activity android:name=".LoginActivity" />
+        <activity android:name=".TelaLogin" />
         <activity android:name=".TelaCadastro" />
         <activity android:name=".TelaRecuperaSenha" />
         <activity android:name=".TelaTermos"></activity>

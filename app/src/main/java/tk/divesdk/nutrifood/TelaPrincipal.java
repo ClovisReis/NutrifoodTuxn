@@ -88,7 +88,7 @@ public class TelaPrincipal extends AppCompatActivity  {
                         break;
                     case R.id.logout:
                         FirebaseAuth.getInstance().signOut();
-                        intent = new Intent(TelaPrincipal.this, LoginActivity.class);
+                        intent = new Intent(TelaPrincipal.this, TelaLogin.class);
                         startActivity(intent);
                         break;
                     case R.id.googleplay:

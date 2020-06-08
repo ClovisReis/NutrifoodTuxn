@@ -28,7 +28,7 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
-public class LoginActivity extends AppCompatActivity {
+public class TelaLogin extends AppCompatActivity {
     private String email;
     private String senha;
     private FirebaseAuth firebaseAuth;
@@ -100,7 +100,7 @@ public class LoginActivity extends AppCompatActivity {
 
         AuthCredential credential = GoogleAuthProvider.getCredential(acct.getIdToken(), null);
         firebaseAuth.signInWithCredential(credential)
-                .addOnCompleteListener(LoginActivity.this, new OnCompleteListener<AuthResult>() {
+                .addOnCompleteListener(TelaLogin.this, new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) { //SUCESSO AO LOGAR COM O GOOGLE - FIREBASEAUTH
@@ -170,7 +170,7 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     public void abrirCadastroUsuario(View view) {
-        Intent intent = new Intent(LoginActivity.this, TelaCadastro.class);
+        Intent intent = new Intent(TelaLogin.this, TelaCadastro.class);
         startActivity(intent);
     }
 
@@ -183,7 +183,7 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     private void abrirAreaPrincipal() {
-        Intent intent = new Intent(LoginActivity.this, TelaPrincipal.class);
+        Intent intent = new Intent(TelaLogin.this, TelaPrincipal.class);
         startActivity(intent);
         finish();
     }
@@ -208,7 +208,7 @@ public class LoginActivity extends AppCompatActivity {
             senha = Editsenha.getText().toString();
 
             firebaseAuth.signInWithEmailAndPassword(email, senha)
-                    .addOnCompleteListener(LoginActivity.this, new OnCompleteListener<AuthResult>() {
+                    .addOnCompleteListener(TelaLogin.this, new OnCompleteListener<AuthResult>() {
                         @Override
                         public void onComplete(@NonNull Task<AuthResult> task) {
                             if (task.isSuccessful()) {

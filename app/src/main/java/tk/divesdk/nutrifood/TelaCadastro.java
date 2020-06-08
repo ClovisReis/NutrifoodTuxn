@@ -49,10 +49,10 @@ public class TelaCadastro extends AppCompatActivity {
             //DADOS DA TELA
             editnome = (EditText) findViewById(R.id.input_name);
             nome = editnome.getText().toString().trim();
-            ;
+
             editemail = (EditText) findViewById(R.id.input_email);
             email = editemail.getText().toString().trim();
-            ;
+
             editsenha = (EditText) findViewById(R.id.input_password);
             senha = editsenha.getText().toString().trim();
             editsenha_confirm = (EditText) findViewById(R.id.input_password_confirm);
@@ -196,7 +196,7 @@ public class TelaCadastro extends AppCompatActivity {
     }
 
     public void abrirLoginUsuario(View v) {
-        Intent intent = new Intent(TelaCadastro.this, LoginActivity.class);
+        Intent intent = new Intent(TelaCadastro.this, TelaLogin.class);
         startActivity(intent);
         finish();
     }

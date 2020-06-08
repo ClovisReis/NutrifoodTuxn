@@ -1,94 +1,57 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<ScrollView
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_height="match_parent"
-    android:layout_width="match_parent"
-    android:background="@color/white" >
-
-<LinearLayout
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:layout_margin="40dp"
+    android:background="@color/branco"
     android:orientation="vertical"
-    tools:context=".TelaTermos"
-    android:layout_margin="40dp">
+    tools:context=".TelaTermos">
 
+    <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        tools:ignore="WebViewLayout">
+        <WebView
+            android:id="@+id/wv_content"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+    </ScrollView>
 
-    <TextView
+    <CheckBox
+        android:id="@+id/aceito1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="TERMOS DE USO"
-        android:layout_gravity="center"
-        android:textColor="@color/texto"
-        android:textSize="36dp"/>
+        android:layout_marginTop="40dp"
+        android:buttonTint="@color/colorPrimary"
+        android:checked="false"
+        android:text="Lí e aceito os termos de uso"
+        android:textColor="@color/texto" />
 
-    <TextView
+    <CheckBox
+        android:id="@+id/aceito2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20sp"
-        android:textColor="@color/texto"
-        android:text="1 - TesteTesteTesteTesteTesteTesteTesteTesteTesteTesteTesteTesteTesteTesteTesteTeste"/>
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textColor="@color/texto"
-        android:layout_marginTop="20sp"
-        android:text="2 - esteteesteteesteteesteteesteteesteteesteteesteteesteteesteteesteteesteteesteteesteteestete"/>
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20sp"
-        android:textColor="@color/texto"
-        android:text="3 - testandotestandotestandotestandotestandotestandotestandotestandotestandotestandotestandotestandotestando "/>
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20sp"
-        android:textColor="@color/texto"
-        android:text="4 - estandodeteestandodeteestandodeteestandodeteestandodeteestandodeteestandodeteestandodeteestandodeteestandodeteestandodete"/>
-
-
-
-        <CheckBox
-            android:layout_marginTop="40dp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/aceito1"
-            android:textColor="@color/texto"
-            android:text="Lí e aceito os termos de uso"
-            android:buttonTint="@color/colorPrimary"
-            android:checked="false"/>
-
-        <CheckBox
-            android:layout_marginTop="5dp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/aceito2"
-            android:textColor="@color/texto"
-            android:text="Desejo receber avisos sobre ofertas e conteudos relacionados ao app pelo e-mail"
-            android:buttonTint="@color/colorPrimary"
-            android:checked="false"/>
-
+        android:layout_marginTop="5dp"
+        android:buttonTint="@color/colorPrimary"
+        android:checked="false"
+        android:text="Desejo receber avisos sobre ofertas e conteudos relacionados ao app pelo e-mail"
+        android:textColor="@color/texto" />
 
     <Button
+        android:id="@+id/aceito"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="OK"
-        android:background="@drawable/corners"
-        android:textColor="@color/white"
-        android:layout_marginTop="40sp"
         android:layout_gravity="center"
+        android:layout_marginTop="40sp"
+        android:layout_marginBottom="30sp"
+        android:background="@drawable/corners"
         android:onClick="OK"
-        android:id="@+id/aceito"
-        android:layout_marginBottom="30sp"/>
-
-
+        android:text="OK"
+        android:textColor="@color/white" />
 
 </LinearLayout>
 
-</ScrollView>

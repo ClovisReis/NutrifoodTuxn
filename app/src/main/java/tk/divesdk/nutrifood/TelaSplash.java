@@ -34,7 +34,7 @@ public class TelaSplash extends Activity implements Runnable {
     }
 
     public void run() {
-        startActivity(new Intent(TelaSplash.this, LoginActivity.class));
+        startActivity(new Intent(TelaSplash.this, TelaLogin.class));
         finish();
     }
 }
