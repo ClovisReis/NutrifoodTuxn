@@ -4,9 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.net.ConnectivityManager;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
@@ -27,7 +25,6 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.GoogleAuthProvider;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
-import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
@@ -140,7 +137,7 @@ public class LoginActivity extends AppCompatActivity {
                                                 toast.show();
                                             }
 
-                                            Intent it = new Intent(getApplicationContext(), Tela_termos.class);
+                                            Intent it = new Intent(getApplicationContext(), TelaTermos.class);
                                             startActivity(it);
                                         } else {
                                             Toast toast = Toast.makeText(getApplicationContext(), "Ocorreu uma falha no login, tente novamente.", Toast.LENGTH_LONG);
@@ -149,7 +146,7 @@ public class LoginActivity extends AppCompatActivity {
 
                                     } else { // JÁ LOGOU
                                         //CASO LAPROVADO SEJA FALSE REDIRECT TERMO, SENÃO TELA PRINCIPAL
-                                        Intent it = laprovado.equals("false") ? new Intent(getApplicationContext(), Tela_termos.class) : new Intent(getApplicationContext(), TelaPrincipal.class);
+                                        Intent it = laprovado.equals("false") ? new Intent(getApplicationContext(), TelaTermos.class) : new Intent(getApplicationContext(), TelaPrincipal.class);
                                         startActivity(it);
                                     }
                                 }
@@ -173,7 +170,7 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     public void abrirCadastroUsuario(View view) {
-        Intent intent = new Intent(LoginActivity.this, CadastroActivity.class);
+        Intent intent = new Intent(LoginActivity.this, TelaCadastro.class);
         startActivity(intent);
     }
 
@@ -193,7 +190,7 @@ public class LoginActivity extends AppCompatActivity {
 
     public void forgetpassword(View v) {
         if (isOnline()) {
-            Intent it = new Intent(getApplicationContext(), Reset.class);
+            Intent it = new Intent(getApplicationContext(), TelaRecuperaSenha.class);
             startActivity(it);
         } else {
             Toast toast = Toast.makeText(getApplicationContext(), "Conecte-se a internet para efetuar o login.", Toast.LENGTH_LONG);
@@ -219,7 +216,7 @@ public class LoginActivity extends AppCompatActivity {
                                     @Override
                                     public void onDataChange(DataSnapshot dataSnapshot) {
                                         String laprovado = dataSnapshot.getValue() != null ? dataSnapshot.getValue(Boolean.class).toString() : dataSnapshot.getValue(String.class);
-                                        Intent it = laprovado == null || laprovado.equals("false") ? new Intent(getApplicationContext(), Tela_termos.class) : new Intent(getApplicationContext(), TelaPrincipal.class);
+                                        Intent it = laprovado == null || laprovado.equals("false") ? new Intent(getApplicationContext(), TelaTermos.class) : new Intent(getApplicationContext(), TelaPrincipal.class);
                                         startActivity(it);
                                     }
 

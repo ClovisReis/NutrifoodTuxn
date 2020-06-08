@@ -14,11 +14,11 @@
         android:theme="@style/AppTheme">
         <activity android:name=".TelaContato"></activity>
         <activity android:name=".LoginActivity" />
-        <activity android:name=".CadastroActivity" />
-        <activity android:name=".Reset" />
-        <activity android:name=".Tela_termos"></activity>
+        <activity android:name=".TelaCadastro" />
+        <activity android:name=".TelaRecuperaSenha" />
+        <activity android:name=".TelaTermos"></activity>
         <activity
-            android:name=".tela_sobre"
+            android:name=".TelaSobre"
             android:parentActivityName=".TelaPrincipal"
             android:theme="@style/AppTheme.NoActionBar"></activity>
         <activity
@@ -26,11 +26,11 @@
             android:label="@string/app_name"
             android:theme="@style/AppTheme.NoActionBar"></activity>
         <activity
-            android:name=".TelaAlimentos"
+            android:name=".TelaListaAlimentos"
             android:label="@string/app_name"
             android:parentActivityName=".TelaPrincipal"></activity>
         <activity
-            android:name=".tela_splash"
+            android:name=".TelaSplash"
             android:configChanges="orientation">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -39,7 +39,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".ShowAlimento"
+            android:name=".TelaAlimento"
             android:label="@string/app_name"
             android:launchMode="singleTop"></activity>
     </application>

@@ -5,16 +5,13 @@ xmlns:tools="http://schemas.android.com/tools"
 tools:showIn="navigation_view">
 
         <item android:title="Sobre"
-            android:id="@+id/sobre"
-            android:icon="@drawable/spam"/>
+            android:id="@+id/sobre"/>
 
         <item android:title="Avalie Google Play"
-            android:id="@+id/googleplay"
-            android:icon="@drawable/draft"/>
+            android:id="@+id/googleplay"/>
 
         <item android:title="Formulario"
-            android:id="@+id/formulario"
-            android:icon="@drawable/help"/>
+            android:id="@+id/formulario"/>
 
         <item android:title="Contato"
             android:id="@+id/contato"
@@ -22,5 +19,5 @@ tools:showIn="navigation_view">
 
         <item android:title="Logout"
             android:id="@+id/logout"
-            android:icon="@drawable/inbox"/>
+            android:icon="@drawable/icone_nome"/>
 </menu>

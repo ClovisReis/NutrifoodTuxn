@@ -1,20 +1,17 @@
 package tk.divesdk.nutrifood;
 
-import android.content.Intent;
-import android.net.Uri;
 import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import androidx.appcompat.widget.Toolbar;
-import android.view.Menu;
-import android.view.MenuItem;
-import android.view.View;
 
-public class tela_sobre extends AppCompatActivity {
+import android.view.MenuItem;
+
+public class TelaSobre extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.tela_sobre);
+        setContentView(R.layout.activity_tela_sobre);
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.app_bar);
         setSupportActionBar(toolbar);
@@ -39,7 +36,7 @@ public class tela_sobre extends AppCompatActivity {
     }
 
     /*public void Clickgoogleplay(View v){
-        EasyTracker tracker = EasyTracker.getInstance(tela_sobre.this);
+        EasyTracker tracker = EasyTracker.getInstance(TelaSobre.this);
         tracker.send(MapBuilder.createEvent("Botão", "Click", "GooglePlay", 10L).build());
         Uri uri = Uri.parse("https://play.google.com/store/apps/details?id=com.facebook.katana&hl=pt_BR");
         Intent intent = new Intent(Intent.ACTION_VIEW,uri);

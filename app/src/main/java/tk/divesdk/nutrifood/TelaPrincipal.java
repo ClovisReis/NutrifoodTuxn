@@ -78,7 +78,7 @@ public class TelaPrincipal extends AppCompatActivity  {
                         startActivity(intent);
                         break;
                     case R.id.sobre:
-                        intent = new Intent(TelaPrincipal.this, tela_sobre.class);
+                        intent = new Intent(TelaPrincipal.this, TelaSobre.class);
                         startActivity(intent);
                         break;
                     case R.id.formulario:
@@ -120,7 +120,7 @@ public class TelaPrincipal extends AppCompatActivity  {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 String selectedItem = parent.getItemAtPosition(position).toString();
-                Intent it = new Intent(TelaPrincipal.this, TelaAlimentos.class);
+                Intent it = new Intent(TelaPrincipal.this, TelaListaAlimentos.class);
                 it.putExtra("ABA_SELECIONADA", AbaConsulta);
                 String lItem = selectedItem.replace("{", "").replace("}","").replace("name_item=","");
                 it.putExtra("ITEM_SELECIONADO", lItem);

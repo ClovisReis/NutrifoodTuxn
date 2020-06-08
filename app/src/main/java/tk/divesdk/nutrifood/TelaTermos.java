@@ -12,14 +12,12 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CheckBox;
-import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
@@ -27,7 +25,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 
-public class Tela_termos extends AppCompatActivity {
+public class TelaTermos extends AppCompatActivity {
 
     //VALIDAÇÃO
     private boolean ErroSaveUser = false;
@@ -74,7 +72,7 @@ public class Tela_termos extends AppCompatActivity {
                             Toast.LENGTH_SHORT);
                     toast.show();
                 } else {
-                    Intent it = new Intent(Tela_termos.this, TelaPrincipal.class);
+                    Intent it = new Intent(TelaTermos.this, TelaPrincipal.class);
                     startActivity(it);
                     finish();
                 }

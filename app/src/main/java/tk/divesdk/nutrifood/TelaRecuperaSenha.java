@@ -14,7 +14,7 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 
-public class Reset extends AppCompatActivity {
+public class TelaRecuperaSenha extends AppCompatActivity {
 
     private FirebaseAuth firebaseAuth;
     private String email;
@@ -22,7 +22,7 @@ public class Reset extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_reset);
+        setContentView(R.layout.activity_recupera_senha);
     }
 
     public boolean isOnline() {
@@ -41,9 +41,9 @@ public class Reset extends AppCompatActivity {
                         @Override
                         public void onComplete(@NonNull Task<Void> task) {
                             if (task.isSuccessful()) {
-                                Toast.makeText(Reset.this, "Recuperação de accesso, e-mail enviado", Toast.LENGTH_LONG).show();
+                                Toast.makeText(TelaRecuperaSenha.this, "Recuperação de accesso, e-mail enviado", Toast.LENGTH_LONG).show();
                             } else {
-                                Toast.makeText(Reset.this, "Tente novamente", Toast.LENGTH_LONG).show();
+                                Toast.makeText(TelaRecuperaSenha.this, "Tente novamente", Toast.LENGTH_LONG).show();
                             }
                         }
                     });

@@ -1,8 +1,6 @@
 package tk.divesdk.nutrifood;
 
 import android.app.ProgressDialog;
-import android.content.Intent;
-import android.graphics.Color;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import androidx.appcompat.app.AppCompatActivity;
@@ -10,14 +8,9 @@ import androidx.appcompat.widget.Toolbar;
 
 import android.util.Log;
 import android.view.MenuItem;
-import android.view.View;
 import android.widget.ListView;
-import android.widget.SimpleAdapter;
-import android.widget.TableLayout;
-import android.widget.TableRow;
 import android.widget.TextView;
 
-import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -29,14 +22,14 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-public class ShowAlimento extends AppCompatActivity {
+public class TelaAlimento extends AppCompatActivity {
     public String ID;
     public Alimento lAl;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_show_alimento);
+        setContentView(R.layout.activity_tela_alimento);
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.app_bar);
         setSupportActionBar(toolbar);
@@ -54,7 +47,7 @@ public class ShowAlimento extends AppCompatActivity {
     }
 
     private void CarregaElemento(){
-        new ShowAlimento.ParseTask().execute();
+        new TelaAlimento.ParseTask().execute();
     }
 
     private class ParseTask extends AsyncTask<Void, Void, String> {
@@ -66,7 +59,7 @@ public class ShowAlimento extends AppCompatActivity {
         @Override
         protected void onPreExecute() {
             super.onPreExecute();
-            pd=new ProgressDialog(ShowAlimento.this);
+            pd=new ProgressDialog(TelaAlimento.this);
             pd.setTitle("NutriFood");
             pd.setMessage("Carregando...Por favor aguarde!");
             pd.show();
@@ -75,7 +68,7 @@ public class ShowAlimento extends AppCompatActivity {
         @Override
         protected String doInBackground(Void... params) {
             try {
-                String lid = ShowAlimento.this.ID;
+                String lid = TelaAlimento.this.ID;
                 String $url_json = "https://nutrifoodapi.herokuapp.com/alimentos/"+ lid;
                 URL url = new URL($url_json);
 

@@ -4,7 +4,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.net.ConnectivityManager;
 import android.os.Bundle;
-import android.util.Log;
 import android.util.Patterns;
 import android.view.View;
 import android.widget.EditText;
@@ -22,7 +21,7 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.UserProfileChangeRequest;
 import com.google.firebase.database.FirebaseDatabase;
 
-public class CadastroActivity extends AppCompatActivity {
+public class TelaCadastro extends AppCompatActivity {
     private String email;
     private String senha;
     private String senha_confirm;
@@ -107,7 +106,7 @@ public class CadastroActivity extends AppCompatActivity {
 
             firebaseAuth = FirebaseAuth.getInstance();
             firebaseAuth.createUserWithEmailAndPassword(email, senha)
-                    .addOnCompleteListener(CadastroActivity.this, new OnCompleteListener<AuthResult>() {
+                    .addOnCompleteListener(TelaCadastro.this, new OnCompleteListener<AuthResult>() {
                         @Override
                         public void onComplete(@NonNull Task<AuthResult> task) {
                             if (task.isSuccessful()) { //SUCESSO AO CADASTRAR EMAIL/SENHA FIREBASEAUTH
@@ -157,28 +156,28 @@ public class CadastroActivity extends AppCompatActivity {
                                 String errorCode = ((FirebaseAuthException) task.getException()).getErrorCode();
                                 switch (errorCode) {
                                     case "ERROR_INVALID_EMAIL":
-                                        Toast.makeText(CadastroActivity.this, "O endereço de email está mal formatado.", Toast.LENGTH_LONG).show();
+                                        Toast.makeText(TelaCadastro.this, "O endereço de email está mal formatado.", Toast.LENGTH_LONG).show();
                                         break;
                                     case "ERROR_WRONG_PASSWORD":
-                                        Toast.makeText(CadastroActivity.this, "A senha é inválida.", Toast.LENGTH_LONG).show();
+                                        Toast.makeText(TelaCadastro.this, "A senha é inválida.", Toast.LENGTH_LONG).show();
                                         break;
                                     case "ERROR_ACCOUNT_EXISTS_WITH_DIFFERENT_CREDENTIAL":
-                                        Toast.makeText(CadastroActivity.this, "Já existe uma conta com o mesmo endereço de email, mas com credenciais de login diferentes. Faça login usando um provedor associado a este endereço de e-mail.", Toast.LENGTH_LONG).show();
+                                        Toast.makeText(TelaCadastro.this, "Já existe uma conta com o mesmo endereço de email, mas com credenciais de login diferentes. Faça login usando um provedor associado a este endereço de e-mail.", Toast.LENGTH_LONG).show();
                                         break;
                                     case "ERROR_EMAIL_ALREADY_IN_USE":
-                                        Toast.makeText(CadastroActivity.this, "O endereço de e-mail já está sendo usado por outra conta.", Toast.LENGTH_LONG).show();
+                                        Toast.makeText(TelaCadastro.this, "O endereço de e-mail já está sendo usado por outra conta.", Toast.LENGTH_LONG).show();
                                         break;
                                     case "ERROR_CREDENTIAL_ALREADY_IN_USE":
-                                        Toast.makeText(CadastroActivity.this, "Essa credencial já está associada a uma conta de usuário diferente.\n", Toast.LENGTH_LONG).show();
+                                        Toast.makeText(TelaCadastro.this, "Essa credencial já está associada a uma conta de usuário diferente.\n", Toast.LENGTH_LONG).show();
                                         break;
                                     case "ERROR_USER_DISABLED":
-                                        Toast.makeText(CadastroActivity.this, "A conta do usuário foi desativada por um administrador.", Toast.LENGTH_LONG).show();
+                                        Toast.makeText(TelaCadastro.this, "A conta do usuário foi desativada por um administrador.", Toast.LENGTH_LONG).show();
                                         break;
                                     case "ERROR_WEAK_PASSWORD":
-                                        Toast.makeText(CadastroActivity.this, "A senha é inválida, deve conter no mínimo 6 caracteres", Toast.LENGTH_LONG).show();
+                                        Toast.makeText(TelaCadastro.this, "A senha é inválida, deve conter no mínimo 6 caracteres", Toast.LENGTH_LONG).show();
                                         break;
                                     default:
-                                        Toast.makeText(CadastroActivity.this, "Ocorreu uma falha no cadastro, tente novamente.", Toast.LENGTH_LONG).show();
+                                        Toast.makeText(TelaCadastro.this, "Ocorreu uma falha no cadastro, tente novamente.", Toast.LENGTH_LONG).show();
                                         break;
                                 }
                             }
@@ -197,7 +196,7 @@ public class CadastroActivity extends AppCompatActivity {
     }
 
     public void abrirLoginUsuario(View v) {
-        Intent intent = new Intent(CadastroActivity.this, LoginActivity.class);
+        Intent intent = new Intent(TelaCadastro.this, LoginActivity.class);
         startActivity(intent);
         finish();
     }

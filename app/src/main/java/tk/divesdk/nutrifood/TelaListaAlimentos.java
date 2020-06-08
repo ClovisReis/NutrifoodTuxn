@@ -7,13 +7,11 @@ import android.os.Bundle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import android.util.Log;
-import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
-import android.widget.SimpleAdapter;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -28,7 +26,7 @@ import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-public class TelaAlimentos extends AppCompatActivity  {
+public class TelaListaAlimentos extends AppCompatActivity  {
     public String Aba;
     public String Item;
 
@@ -38,7 +36,7 @@ public class TelaAlimentos extends AppCompatActivity  {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_tela_alimentos);
+        setContentView(R.layout.activity_tela_lista_alimentos);
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.app_bar);
         setSupportActionBar(toolbar);
@@ -59,7 +57,7 @@ public class TelaAlimentos extends AppCompatActivity  {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 String selectedItem = parent.getItemAtPosition(position).toString();
-                Intent it = new Intent(TelaAlimentos.this, ShowAlimento.class);
+                Intent it = new Intent(TelaListaAlimentos.this, TelaAlimento.class);
                 String lId = (String )lListIds.get(position);
                 it.putExtra("ID_SELECIONADO", lId);
                 startActivity(it);
@@ -68,7 +66,7 @@ public class TelaAlimentos extends AppCompatActivity  {
     }
 
     private void CarregaList(){
-       new TelaAlimentos.ParseTask().execute();
+       new TelaListaAlimentos.ParseTask().execute();
     }
 
     private class ParseTask extends AsyncTask<Void, Void, String> {
@@ -80,7 +78,7 @@ public class TelaAlimentos extends AppCompatActivity  {
         @Override
         protected void onPreExecute() {
             super.onPreExecute();
-            pd=new ProgressDialog(TelaAlimentos.this);
+            pd=new ProgressDialog(TelaListaAlimentos.this);
             pd.setTitle("NutriFood");
             pd.setMessage("Carregando...Por favor aguarde!");
             pd.show();
@@ -89,8 +87,8 @@ public class TelaAlimentos extends AppCompatActivity  {
         @Override
         protected String doInBackground(Void... params) {
             try {
-                String retornoAba = TelaAlimentos.this.Aba;
-                String retornopagina = TelaAlimentos.this.Item;
+                String retornoAba = TelaListaAlimentos.this.Aba;
+                String retornopagina = TelaListaAlimentos.this.Item;
 
                 String $url_json = "https://nutrifoodapi.herokuapp.com/alimentos/"+ URLEncoder.encode (retornoAba, "UTF-8") + "/" + URLEncoder.encode (retornopagina, "UTF-8");
                 URL url = new URL($url_json);
@@ -148,7 +146,7 @@ public class TelaAlimentos extends AppCompatActivity  {
                     arrayList.add(lAli);
                 }
 
-                ArrayAdapter adapter = new AlimentoAdapter(TelaAlimentos.this, arrayList);
+                ArrayAdapter adapter = new AlimentoAdapter(TelaListaAlimentos.this, arrayList);
                 lView.setAdapter(adapter);
             } catch (JSONException e) {
                 e.printStackTrace();

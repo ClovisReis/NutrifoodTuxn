@@ -10,13 +10,13 @@ import android.graphics.drawable.AnimationDrawable;
 import android.os.Bundle;
 import android.widget.ImageView;
 
-public class tela_splash extends Activity implements Runnable {
+public class TelaSplash extends Activity implements Runnable {
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        setContentView(R.layout.tela_splash);
+        setContentView(R.layout.activity_tela_splash);
 
         final ImageView animationImageView = (ImageView) findViewById(R.id.AnimationImageView);
         animationImageView.setBackgroundResource(R.drawable.android);
@@ -34,7 +34,7 @@ public class tela_splash extends Activity implements Runnable {
     }
 
     public void run() {
-        startActivity(new Intent(tela_splash.this, LoginActivity.class));
+        startActivity(new Intent(TelaSplash.this, LoginActivity.class));
         finish();
     }
 }
