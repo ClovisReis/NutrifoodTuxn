@@ -131,11 +131,13 @@ public class TelaContato extends AppCompatActivity {
 
             if (user != null) {
                 String email = user.getEmail();
+                String nome = user.getDisplayName();
 
-                Contato NovoContato = new Contato(email, assunto, mensagem);
+                Contato NovoContato = new Contato(nome, email, assunto, mensagem);
 
                 JSONObject json_result = new JSONObject();
                 JSONObject item = new JSONObject();
+                item.put("nome", NovoContato.getNome());
                 item.put("email", NovoContato.getEmail());
                 item.put("subject", NovoContato.getAssunto());
                 item.put("message", NovoContato.getMensagem());
