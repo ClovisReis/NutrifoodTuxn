@@ -55,7 +55,7 @@
             android:layout_width="match_parent"
             android:layout_marginLeft="10sp"
             android:layout_marginRight="10sp"
-            android:drawableLeft="@drawable/cadeado"
+            android:drawableLeft="@drawable/camada3"
             android:layout_marginTop="30sp"
             android:layout_height="40sp"
             android:hint="  Senha"

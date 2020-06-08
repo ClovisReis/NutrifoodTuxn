@@ -39,7 +39,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="10sp"
-            android:drawableLeft="@drawable/usuario"
+            android:drawableLeft="@drawable/anon"
             android:layout_marginRight="10sp"
             android:layout_marginTop="50sp"
             android:hint="  Nome"
@@ -67,7 +67,7 @@
             android:inputType="textPassword"
             android:layout_marginTop="30sp"
             android:layout_marginLeft="10sp"
-            android:drawableLeft="@drawable/cadeado"
+            android:drawableLeft="@drawable/camada3"
             android:layout_marginRight="10sp"
             android:hint="  Senha"
             />
@@ -78,7 +78,7 @@
             android:inputType="textPassword"
             android:layout_marginTop="30sp"
             android:layout_marginLeft="10sp"
-            android:drawableLeft="@drawable/cadeado"
+            android:drawableLeft="@drawable/camada3"
             android:layout_marginRight="10sp"
             android:hint="  Confirme a Senha"
             />
