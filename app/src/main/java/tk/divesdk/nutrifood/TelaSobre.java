@@ -5,6 +5,7 @@ import android.os.Bundle;
 import androidx.appcompat.widget.Toolbar;
 
 import android.view.MenuItem;
+import android.webkit.WebView;
 
 public class TelaSobre extends AppCompatActivity {
 
@@ -20,9 +21,8 @@ public class TelaSobre extends AppCompatActivity {
         getSupportActionBar().setHomeButtonEnabled(true);
         getSupportActionBar().setDisplayShowTitleEnabled(false);
 
-
-
-
+        WebView webView = (WebView) findViewById(R.id.wv_content);
+        webView.loadUrl("https://nutrifoodapi.herokuapp.com/info/about");
     }
 
     public void onStart() {

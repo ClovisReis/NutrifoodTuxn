@@ -37,7 +37,7 @@ public class TelaTermos extends AppCompatActivity {
         setContentView(R.layout.activity_tela_termos);
 
         WebView webView = (WebView) findViewById(R.id.wv_content);
-        webView.loadUrl("https://blogapptestblog.wordpress.com/politica-de-privacidade/");
+        webView.loadUrl("https://nutrifoodapi.herokuapp.com/info/term");
     }
 
     public boolean isOnline() {
