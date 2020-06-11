@@ -176,7 +176,24 @@ public class TelaLogin extends AppCompatActivity {
 
     private void verificarUsuarioLogado(FirebaseAuth firebaseAuth) {
         if (firebaseAuth.getCurrentUser() != null) { // USUÁRIO LOGADO
-            abrirAreaPrincipal();
+            ValueEventListener DatabaseListener = new ValueEventListener() {
+                @Override
+                public void onDataChange(DataSnapshot dataSnapshot) {
+                    String laprovado = dataSnapshot.getValue() != null ? dataSnapshot.getValue(Boolean.class).toString() : dataSnapshot.getValue(String.class);
+                    //CASO LAPROVADO SEJA FALSE REDIRECT TERMO, SENÃO TELA PRINCIPAL
+                    Intent it = laprovado != null && laprovado.equals("false") ? new Intent(getApplicationContext(), TelaTermos.class) : new Intent(getApplicationContext(), TelaPrincipal.class);
+                    startActivity(it);
+                }
+                @Override
+                public void onCancelled(DatabaseError databaseError) {
+                    Toast toast = Toast.makeText(getApplicationContext(), "Ocorreu uma falha, tente novamente.", Toast.LENGTH_LONG);
+                    toast.show();
+                }
+            };
+            FirebaseDatabase.getInstance()
+                    .getReference("Users")
+                    .child(FirebaseAuth.getInstance().getCurrentUser().getUid())
+                    .child("aprovado").addValueEventListener(DatabaseListener);
         } else {
             setContentView(R.layout.activity_login);
         }
