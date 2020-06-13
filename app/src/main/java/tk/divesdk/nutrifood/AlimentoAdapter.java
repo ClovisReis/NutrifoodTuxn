@@ -2,6 +2,7 @@ package tk.divesdk.nutrifood;
 
 import android.content.Context;
 import android.net.Uri;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -34,6 +35,7 @@ public class AlimentoAdapter extends ArrayAdapter<Alimento> {
         CircleImageView imagem = (CircleImageView) rowView.findViewById(R.id.profile_image);
 
         nome.setText(elementos.get(position).getNome());
+
         String imageUrl = elementos.get(position).getImagem();
         Picasso.get().load(imageUrl).into(imagem);
 

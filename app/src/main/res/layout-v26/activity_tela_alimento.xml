@@ -19,7 +19,7 @@ android:layout_height="match_parent">
        android:layout_width="match_parent"
        android:layout_height="match_parent"
        android:orientation="vertical"
-       android:layout_margin="3sp">
+       android:layout_margin="15sp">
 
 
 
@@ -222,17 +222,15 @@ android:layout_height="match_parent">
        android:layout_gravity="center_horizontal" />
 
    <TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
-       android:layout_width="wrap_content"
+       android:layout_width="match_parent"
        android:layout_height="wrap_content" >
       <TableRow>
-
-          <TextView
-
-              android:background="@drawable/bordas_layout"
-              android:gravity="center_horizontal"
-              android:text=" Energia(Kcal)  "
-              android:textAlignment="center"
-              android:textColor="@color/black" />
+         <TextView
+             android:text=" Energia(Kcal)  "
+             android:textAlignment="center"
+             android:textColor="@color/black"
+             android:gravity="center_horizontal"
+             android:background="@drawable/bordas_layout"/>
          <TextView
              android:textAlignment="center"
              android:gravity="center_horizontal"
