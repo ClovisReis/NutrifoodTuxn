@@ -1,5 +1,6 @@
 package tk.divesdk.nutrifood;
 
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.net.ConnectivityManager;
@@ -96,6 +97,11 @@ public class TelaLogin extends AppCompatActivity {
     }
 
     private void firebaseAuthWithGoogle(GoogleSignInAccount acct) {
+        final ProgressDialog pd = new ProgressDialog(TelaLogin.this);
+        pd.setTitle("NutriFood");
+        pd.setMessage("Carregando...Por favor aguarde!");
+        pd.show();
+
         ErroSaveuser = false;
 
         AuthCredential credential = GoogleAuthProvider.getCredential(acct.getIdToken(), null);
@@ -129,17 +135,20 @@ public class TelaLogin extends AppCompatActivity {
                                             });
 
                                             if (ErroSaveuser) {
+                                                pd.dismiss();
                                                 Toast toast = Toast.makeText(getApplicationContext(), "Ocorreu uma falha no login, tente novamente.", Toast.LENGTH_LONG);
                                                 toast.show();
                                             } else {
                                                 user.delete();
+                                                pd.dismiss();
                                                 Toast toast = Toast.makeText(getApplicationContext(), "Ocorreu uma falha no login, tente novamente.", Toast.LENGTH_LONG);
                                                 toast.show();
                                             }
-
+                                            pd.dismiss();
                                             Intent it = new Intent(getApplicationContext(), TelaTermos.class);
                                             startActivity(it);
                                         } else {
+                                            pd.dismiss();
                                             Toast toast = Toast.makeText(getApplicationContext(), "Ocorreu uma falha no login, tente novamente.", Toast.LENGTH_LONG);
                                             toast.show();
                                         }
@@ -153,6 +162,7 @@ public class TelaLogin extends AppCompatActivity {
 
                                 @Override
                                 public void onCancelled(DatabaseError databaseError) {
+                                    pd.dismiss();
                                     Toast toast = Toast.makeText(getApplicationContext(), "Ocorreu uma falha no login, tente novamente.", Toast.LENGTH_LONG);
                                     toast.show();
                                 }
@@ -162,6 +172,7 @@ public class TelaLogin extends AppCompatActivity {
                                     .child(FirebaseAuth.getInstance().getCurrentUser().getUid())
                                     .child("aprovado").addValueEventListener(DatabaseListener);
                         } else {
+                            pd.dismiss();
                             Toast toast = Toast.makeText(getApplicationContext(), "Ocorreu uma falha no login, tente novamente.", Toast.LENGTH_LONG);
                             toast.show();
                         }
@@ -199,12 +210,6 @@ public class TelaLogin extends AppCompatActivity {
         }
     }
 
-    private void abrirAreaPrincipal() {
-        Intent intent = new Intent(TelaLogin.this, TelaPrincipal.class);
-        startActivity(intent);
-        finish();
-    }
-
     public void forgetpassword(View v) {
         if (isOnline()) {
             Intent it = new Intent(getApplicationContext(), TelaRecuperaSenha.class);
@@ -217,12 +222,18 @@ public class TelaLogin extends AppCompatActivity {
 
 
     public void btn_login(View v) {
+        final ProgressDialog pd = new ProgressDialog(TelaLogin.this);
+        pd.setTitle("NutriFood");
+        pd.setMessage("Carregando...Por favor aguarde!");
+
         if (isOnline()) {
             //DADOS DA TELA
             EditText Editemail = (EditText) findViewById(R.id.input_emaillogin);
             email = Editemail.getText().toString();
             EditText Editsenha = (EditText) findViewById(R.id.input_passwordlogin);
             senha = Editsenha.getText().toString();
+            pd.show();
+
 
             firebaseAuth.signInWithEmailAndPassword(email, senha)
                     .addOnCompleteListener(TelaLogin.this, new OnCompleteListener<AuthResult>() {
@@ -248,12 +259,14 @@ public class TelaLogin extends AppCompatActivity {
                                         .child(FirebaseAuth.getInstance().getCurrentUser().getUid())
                                         .child("aprovado").addValueEventListener(DatabaseListener);
                             } else {
+                                pd.dismiss();
                                 Toast toast = Toast.makeText(getApplicationContext(), "E-mail ou Senha inválidos", Toast.LENGTH_LONG);
                                 toast.show();
                             }
                         }
                     });
         } else {
+            pd.dismiss();
             Toast toast = Toast.makeText(getApplicationContext(), "Conecte-se a internet para efetuar o login.", Toast.LENGTH_LONG);
             toast.show();
         }

@@ -1,5 +1,6 @@
 package tk.divesdk.nutrifood;
 
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.net.ConnectivityManager;
@@ -101,9 +102,13 @@ public class TelaCadastro extends AppCompatActivity {
                 return;
             }
 
+            final ProgressDialog pd = new ProgressDialog(TelaCadastro.this);
+            pd.setTitle("NutriFood");
+            pd.setMessage("Carregando...Por favor aguarde!");
+            pd.show();
+
             ErroProfile = false;
             ErroSaveUser = false;
-
             firebaseAuth = FirebaseAuth.getInstance();
             firebaseAuth.createUserWithEmailAndPassword(email, senha)
                     .addOnCompleteListener(TelaCadastro.this, new OnCompleteListener<AuthResult>() {
@@ -141,15 +146,19 @@ public class TelaCadastro extends AppCompatActivity {
                                 });
 
                                 if (ErroProfile || ErroSaveUser) {
+                                    pd.dismiss();
                                     user.delete();
                                     Toast toast = Toast.makeText(getApplicationContext(), "Ocorreu uma falha no cadastro, tente novamente.",
                                             Toast.LENGTH_SHORT);
                                     toast.show();
                                     finish();
                                 } else {
+                                    pd.dismiss();
                                     Toast toast = Toast.makeText(getApplicationContext(), "Usuário cadastrado com sucesso.",
                                             Toast.LENGTH_SHORT);
                                     toast.show();
+                                    Intent intent = new Intent(TelaCadastro.this, TelaTermos.class);
+                                    startActivity(intent);
                                     finish();
                                 }
                             } else {
@@ -180,10 +189,12 @@ public class TelaCadastro extends AppCompatActivity {
                                         Toast.makeText(TelaCadastro.this, "Ocorreu uma falha no cadastro, tente novamente.", Toast.LENGTH_LONG).show();
                                         break;
                                 }
+                                pd.dismiss();
                             }
                         }
                     });
-        } else {
+        }
+        else {
             Toast toast = Toast.makeText(getApplicationContext(), "Conecte-se a internet para efetuar o cadastro.", Toast.LENGTH_LONG);
             toast.show();
         }
@@ -193,11 +204,5 @@ public class TelaCadastro extends AppCompatActivity {
         ConnectivityManager manager = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
         return manager.getActiveNetworkInfo() != null &&
                 manager.getActiveNetworkInfo().isConnectedOrConnecting();
-    }
-
-    public void abrirLoginUsuario(View v) {
-        Intent intent = new Intent(TelaCadastro.this, TelaLogin.class);
-        startActivity(intent);
-        finish();
     }
 }

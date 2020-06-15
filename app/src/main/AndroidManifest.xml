@@ -12,47 +12,37 @@
         android:roundIcon="@mipmap/ic_launcher"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".TelaContato"></activity>
+        <activity android:name=".TelaInternet"></activity>
+        <activity android:name=".TelaContato" />
         <activity android:name=".TelaLogin" />
         <activity android:name=".TelaCadastro" />
         <activity android:name=".TelaRecuperaSenha" />
-        <activity android:name=".TelaTermos">
-
-
-
-        </activity>
+        <activity android:name=".TelaTermos"></activity>
         <activity
             android:name=".TelaSobre"
             android:parentActivityName=".TelaPrincipal"
-            android:theme="@style/AppTheme.NoActionBar">
-
-        </activity>
+            android:theme="@style/AppTheme.NoActionBar"></activity>
         <activity
             android:name=".TelaPrincipal"
             android:label="@string/app_name"
-            android:theme="@style/AppTheme.NoActionBar">
-
+            android:theme="@style/AppTheme.NoActionBar"></activity>
+        <activity
+            android:name=".TelaListaAlimentos"
+            android:label="@string/app_name"
+            android:parentActivityName=".TelaPrincipal" />
+        <activity
+            android:name=".TelaSplash"
+            android:configChanges="orientation">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-
-
-        </activity>
-        <activity
-            android:name=".TelaListaAlimentos"
-            android:label="@string/app_name"
-            android:parentActivityName=".TelaPrincipal"></activity>
-        <activity
-            android:name=".TelaSplash"
-            android:configChanges="orientation">
-
         </activity>
         <activity
             android:name=".TelaAlimento"
             android:label="@string/app_name"
-            android:launchMode="singleTop"></activity>
+            android:launchMode="singleTop" />
     </application>
 
 </manifest>
