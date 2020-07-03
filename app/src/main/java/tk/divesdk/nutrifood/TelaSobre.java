@@ -45,10 +45,10 @@ public class TelaSobre extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    @Override
+    /*@Override
     public void onBackPressed(){ //Botão BACK padrão do android
          //O efeito ao ser pressionado do botão (no caso abre a activity)
         finish(); //Método para matar a activity e não deixa-lá indexada na pilhagem
         return;
-    }
+    }*/
 }
