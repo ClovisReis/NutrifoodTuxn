@@ -20,8 +20,8 @@
         <activity android:name=".TelaTermos"></activity>
         <activity
             android:name=".TelaSobre"
-            android:parentActivityName=".TelaPrincipal"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:label="@string/app_name"
+            android:launchMode="singleTop" />
         <activity
             android:name=".TelaPrincipal"
             android:label="@string/app_name"

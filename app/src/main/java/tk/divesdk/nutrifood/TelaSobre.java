@@ -35,14 +35,6 @@ public class TelaSobre extends AppCompatActivity {
 
     }
 
-    /*public void Clickgoogleplay(View v){
-        EasyTracker tracker = EasyTracker.getInstance(TelaSobre.this);
-        tracker.send(MapBuilder.createEvent("Botão", "Click", "GooglePlay", 10L).build());
-        Uri uri = Uri.parse("https://play.google.com/store/apps/details?id=com.facebook.katana&hl=pt_BR");
-        Intent intent = new Intent(Intent.ACTION_VIEW,uri);
-        startActivity(intent);
-    }*/
-
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
@@ -59,7 +51,4 @@ public class TelaSobre extends AppCompatActivity {
         finish(); //Método para matar a activity e não deixa-lá indexada na pilhagem
         return;
     }
-
-
-
 }
