@@ -21,8 +21,6 @@ android:layout_height="match_parent">
        android:orientation="vertical"
        android:layout_margin="3sp">
 
-
-
    <TextView
        android:id="@+id/txtnome"
        android:textStyle="bold"
@@ -44,7 +42,7 @@ android:layout_height="match_parent">
        android:weightSum="100">
 
       <TextView
-          android:id="@+id/textView12"
+          android:id="@+id/txtnome_cientifico_label"
           android:textStyle="bold"
           android:textColor="@color/black"
           android:layout_width="wrap_content"
@@ -69,7 +67,7 @@ android:layout_height="match_parent">
        android:weightSum="100">
 
       <TextView
-          android:id="@+id/textView14"
+          android:id="@+id/txtnome_popular_label"
           android:textColor="@color/black"
           android:layout_width="wrap_content"
           android:layout_height="match_parent"
@@ -94,7 +92,7 @@ android:layout_height="match_parent">
        android:weightSum="100">
 
       <TextView
-          android:id="@+id/textView16"
+          android:id="@+id/txtorigem_label"
           android:textStyle="bold"
           android:textColor="@color/black"
           android:layout_width="wrap_content"

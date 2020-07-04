@@ -8,6 +8,7 @@ import androidx.appcompat.widget.Toolbar;
 
 import android.util.Log;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -134,6 +135,64 @@ public class TelaAlimento extends AppCompatActivity {
                     lAlimento.setNiacina_mg(friend.getString("niacina_mg"));
                     lAlimento.setVitc_mg(friend.getString("vitc_mg"));
 
+                    if(lAlimento.getNome_cientifico().equals("null")){
+                        lAlimento.setNome_cientifico("Desconhecido");
+                    }
+                    if(lAlimento.getNome_popular().equals("null")){
+                        lAlimento.setNome_popular("Desconhecido");
+                    }
+                    if(lAlimento.getOrigem().equals("null")){
+                        lAlimento.setOrigem("Desconhecida");
+                    }
+                    if(lAlimento.getCulinaria().equals("null")) {
+                        lAlimento.setCulinaria("Desconhecida");
+                    }
+                    if(lAlimento.getCaracteristicas().equals("null")) {
+                        lAlimento.setCulinaria("Desconhecida");
+                    }
+                    if(lAlimento.getCuriosidade().equals("null")) {
+                        lAlimento.setCulinaria("Desconhecida");
+                    }
+                    if(lAlimento.getEnergia_kcal().equals("0")){
+                        lAlimento.setEnergia_kcal("--");
+                    }
+                    if(lAlimento.getProteinas_g().equals("0")) {
+                        lAlimento.setProteinas_g("--");
+                    }
+                    if(lAlimento.getCarboidratos_g().equals("0")) {
+                        lAlimento.setCarboidratos_g("--");
+                    }
+                    if(lAlimento.getLipideos_g().equals("0")) {
+                        lAlimento.setLipideos_g("--");
+                    }
+                    if(lAlimento.getFibra_g().equals("0")) {
+                        lAlimento.setFibra_g("--");
+                    }
+                    if(lAlimento.getCalcio_mg().equals("0")) {
+                        lAlimento.setCalcio_mg("--");
+                    }
+                    if(lAlimento.getFosforo_mg().equals("0")) {
+                        lAlimento.setFosforo_mg("--");
+                    }
+                    if(lAlimento.getFerro_mg().equals("0")) {
+                        lAlimento.setFerro_mg("--");
+                    }
+                    if(lAlimento.getRetinol_mg().equals("0")) {
+                        lAlimento.setRetinol_mg("--");
+                    }
+                    if(lAlimento.getVitb1_mg().equals("0")) {
+                        lAlimento.setVitb1_mg("--");
+                    }
+                    if(lAlimento.getVitb2_mg().equals("0")) {
+                        lAlimento.setVitb2_mg("--");
+                    }
+                    if(lAlimento.getNiacina_mg().equals("0")) {
+                        lAlimento.setNiacina_mg("--");
+                    }
+                    if(lAlimento.getVitc_mg().equals("0")) {
+                        lAlimento.setVitc_mg("--");
+                    }
+
                     lAl = lAlimento;
 
                     TextView NomeTextView = (TextView)findViewById(R.id.txtnome);
@@ -154,87 +213,32 @@ public class TelaAlimento extends AppCompatActivity {
                     Caracteristicas.setText(lAl.getCaracteristicas());
                     TextView Curiosidade = (TextView)findViewById(R.id.txtcuriosidade);
                     Curiosidade.setText(lAl.getCuriosidade());
-
-
-                if(lAlimento.getEnergia_kcal().equals("0")){
-                    lAlimento.setEnergia_kcal("--");
-                }
-                TextView Caloria = (TextView)findViewById(R.id.txtcaloria);
-                Caloria.setText(lAl.getEnergia_kcal());
-
-                if(lAlimento.getProteinas_g().equals("0")) {
-                    lAlimento.setProteinas_g("--");
-                }
-                TextView Proteina = (TextView)findViewById(R.id.txtproteina);
-                Proteina.setText(lAl.getProteinas_g());
-
-                if(lAlimento.getCarboidratos_g().equals("0")) {
-                    lAlimento.setCarboidratos_g("--");
-                }
-                TextView Carboidrato = (TextView)findViewById(R.id.txtcarboidrato);
-                Carboidrato.setText(lAl.getCarboidratos_g());
-
-                if(lAlimento.getLipideos_g().equals("0")) {
-                    lAlimento.setLipideos_g("--");
-                }
-                TextView Lipideo = (TextView)findViewById(R.id.txtlipideos);
-                Lipideo.setText(lAl.getProteinas_g());
-
-                if(lAlimento.getFibra_g().equals("0")) {
-                    lAlimento.setFibra_g("--");
-                }
-                TextView Fibra = (TextView)findViewById(R.id.txtfibra);
-                Fibra.setText(lAl.getFibra_g());
-
-
-                if(lAlimento.getCalcio_mg().equals("0")) {
-                    lAlimento.setCalcio_mg("--");
-                }
-                TextView Calcio = (TextView)findViewById(R.id.txtcalcio);
-                Calcio.setText(lAl.getCalcio_mg());
-
-                if(lAlimento.getFosforo_mg().equals("0")) {
-                    lAlimento.setFosforo_mg("--");
-                }
-                TextView Fosforo = (TextView)findViewById(R.id.txtfosforo);
-                Fosforo.setText(lAl.getFosforo_mg());
-
-                if(lAlimento.getFerro_mg().equals("0")) {
-                    lAlimento.setFerro_mg("--");
-                }
-                TextView Ferro = (TextView)findViewById(R.id.txtferro);
-                Ferro.setText(lAl.getFerro_mg());
-
-                if(lAlimento.getRetinol_mg().equals("0")) {
-                    lAlimento.setRetinol_mg("--");
-                }
-                TextView Retinol = (TextView)findViewById(R.id.txtretinol);
-                Retinol.setText(lAl.getRetinol_mg());
-
-                if(lAlimento.getVitb1_mg().equals("0")) {
-                    lAlimento.setVitb1_mg("--");
-                }
-                TextView VitaminaB1 = (TextView)findViewById(R.id.txtvitb1);
-                VitaminaB1.setText(lAl.getVitb1_mg());
-
-                if(lAlimento.getVitb2_mg().equals("0")) {
-                    lAlimento.setVitb2_mg("--");
-                }
-                TextView VitaminaB2 = (TextView)findViewById(R.id.txtvitb2);
-                VitaminaB2.setText(lAl.getVitb2_mg());
-
-                if(lAlimento.getNiacina_mg().equals("0")) {
-                    lAlimento.setNiacina_mg("--");
-                }
-                TextView Niacina = (TextView)findViewById(R.id.txtniacina);
-                Niacina.setText(lAl.getNiacina_mg());
-
-                if(lAlimento.getVitc_mg().equals("0")) {
-                    lAlimento.setVitc_mg("--");
-                }
-                TextView VitaminaC = (TextView)findViewById(R.id.txtvitc);
-                VitaminaC.setText(lAl.getVitc_mg());
-
+                    TextView Caloria = (TextView)findViewById(R.id.txtcaloria);
+                    Caloria.setText(lAl.getEnergia_kcal());
+                    TextView Proteina = (TextView)findViewById(R.id.txtproteina);
+                    Proteina.setText(lAl.getProteinas_g());
+                    TextView Carboidrato = (TextView)findViewById(R.id.txtcarboidrato);
+                    Carboidrato.setText(lAl.getCarboidratos_g());
+                    TextView Lipideo = (TextView)findViewById(R.id.txtlipideos);
+                    Lipideo.setText(lAl.getProteinas_g());
+                    TextView Fibra = (TextView)findViewById(R.id.txtfibra);
+                    Fibra.setText(lAl.getFibra_g());
+                    TextView Calcio = (TextView)findViewById(R.id.txtcalcio);
+                    Calcio.setText(lAl.getCalcio_mg());
+                    TextView Fosforo = (TextView)findViewById(R.id.txtfosforo);
+                    Fosforo.setText(lAl.getFosforo_mg());
+                    TextView Ferro = (TextView)findViewById(R.id.txtferro);
+                    Ferro.setText(lAl.getFerro_mg());
+                    TextView Retinol = (TextView)findViewById(R.id.txtretinol);
+                    Retinol.setText(lAl.getRetinol_mg());
+                    TextView VitaminaB1 = (TextView)findViewById(R.id.txtvitb1);
+                    VitaminaB1.setText(lAl.getVitb1_mg());
+                    TextView VitaminaB2 = (TextView)findViewById(R.id.txtvitb2);
+                    VitaminaB2.setText(lAl.getVitb2_mg());
+                    TextView Niacina = (TextView)findViewById(R.id.txtniacina);
+                    Niacina.setText(lAl.getNiacina_mg());
+                    TextView VitaminaC = (TextView)findViewById(R.id.txtvitc);
+                    VitaminaC.setText(lAl.getVitc_mg());
 
             } catch (JSONException e) {
                 e.printStackTrace();
