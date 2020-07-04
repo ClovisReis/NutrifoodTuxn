@@ -81,11 +81,6 @@ public class TelaPrincipal extends AppCompatActivity  {
                         intent = new Intent(TelaPrincipal.this, TelaSobre.class);
                         startActivity(intent);
                         break;
-                    case R.id.formulario:
-                        Uri uri = Uri.parse("http://goo.gl/forms/QmLw25RDuQ");
-                        intent = new Intent(Intent.ACTION_VIEW, uri);
-                        startActivity(intent);
-                        break;
                     case R.id.logout:
                         FirebaseAuth.getInstance().signOut();
                         intent = new Intent(TelaPrincipal.this, TelaLogin.class);

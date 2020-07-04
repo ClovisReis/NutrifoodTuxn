@@ -1,61 +1,67 @@
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/white"
+    >
+
+
 <LinearLayout
 
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical"
-    android:layout_margin="15sp"
-    xmlns:android="http://schemas.android.com/apk/res/android">
+    android:layout_margin="5sp"
+    >
 
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
-        android:text="Assunto"
-        android:layout_marginTop="15sp"
-        android:textColor="@color/white"
-        android:textSize="40sp">
+        android:text="Entre em contato conosco, deixe aqui sua mensagem."
+        android:layout_margin="15sp"
+        android:textColor="@color/black"
+        android:textSize="25dp">
 
     </TextView>
 
 
     <EditText
         android:id="@+id/input_subject"
+        android:hint="Assunto"
         android:layout_width="match_parent"
-        android:layout_marginLeft="10sp"
-        android:layout_marginTop="50sp"
-        android:layout_marginRight="10sp"
-        android:layout_height="40sp"
-        android:inputType="textEmailAddress" />
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:text="Mensagem"
-        android:layout_marginTop="15sp"
+        android:layout_margin="10sp"
+        android:lines="2"
         android:textColor="@color/white"
-        android:textSize="40sp">
-    </TextView>
+        android:layout_height="wrap_content"
+        android:background="@color/colorPrimary"
+        android:inputType="textEmailAddress" />
 
 
     <EditText
         android:id="@+id/input_menssage"
         android:layout_width="match_parent"
-        android:layout_marginLeft="10sp"
-        android:layout_marginTop="50sp"
-        android:layout_marginRight="10sp"
-        android:layout_height="40sp"
-        android:inputType="textEmailAddress" />
+        android:layout_margin="10sp"
+        android:textColor="@color/white"
+        android:lines="8"
+        android:background="@color/colorPrimary"
+        android:layout_height="wrap_content"
+        android:inputType="textMultiLine"
+        android:ems="15"/>
 
     <Button
-        android:layout_width="185sp"
+        android:layout_width="wrap_content"
         android:id="@+id/b1"
+        android:background="@drawable/corners"
         android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
+        android:layout_marginTop="20sp"
         android:textColor="@color/white"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginBottom="24dp"
+        android:layout_gravity="right"
         android:onClick="btn_send"
         android:text="Enviar" />
 
 </LinearLayout>
+
+</ScrollView>

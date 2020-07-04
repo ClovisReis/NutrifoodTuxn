@@ -1,23 +1,31 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
-xmlns:tools="http://schemas.android.com/tools"
-tools:showIn="navigation_view">
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:showIn="navigation_view">
 
         <item android:title="Sobre"
-            android:id="@+id/sobre"/>
+            android:id="@+id/sobre"
+            android:icon="@drawable/ic_info_black_24dp"
+            android:iconTint="@color/colorPrimary"
+            app:itemIconTint="@color/colorPrimary"/>
 
         <item android:title="Avalie Google Play"
-            android:id="@+id/googleplay"/>
-
-        <item android:title="Formulario"
-            android:id="@+id/formulario"/>
+            android:id="@+id/googleplay"
+            android:icon="@drawable/ic_star_black_24dp"
+            android:iconTint="@color/colorPrimary"
+            app:itemIconTint="@color/colorPrimary"/>
 
         <item android:title="Contato"
             android:id="@+id/contato"
-            android:icon="@drawable/inbox"/>
+            android:icon="@drawable/ic_email_black_24dp"
+            android:iconTint="@color/colorPrimary"
+            app:itemIconTint="@color/colorPrimary"/>
 
         <item android:title="Logout"
             android:id="@+id/logout"
-            android:icon="@drawable/icone_nome"/>
+            android:icon="@drawable/ic_person_black_24dp"
+            android:iconTint="@color/colorPrimary"
+            app:itemIconTint="@color/colorPrimary"/>
 </menu>
