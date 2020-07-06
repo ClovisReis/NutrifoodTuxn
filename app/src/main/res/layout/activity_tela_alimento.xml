@@ -6,8 +6,8 @@ android:layout_height="match_parent">
 
 
 <LinearLayout
-    android:layout_width="fill_parent"
-    android:layout_height="fill_parent"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
     android:orientation="vertical" >
 
    <include
@@ -218,185 +218,332 @@ android:layout_height="match_parent">
        android:layout_height="wrap_content"
        android:text="Tabela – Análise nutricional em 100 g"
        android:layout_gravity="center_horizontal" />
+<View
 
-   <TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:paddingBottom="2dp"
+    android:paddingRight="2dp"
+    android:layout_width="match_parent"
+    android:layout_height="1dp"
+    android:background="@color/black"/>
+   <TableLayout
        android:layout_width="wrap_content"
-       android:layout_height="wrap_content" >
-      <TableRow>
+       android:layout_height="wrap_content"
+       android:background="#CCC"
+       android:paddingTop="1dp"
+       android:stretchColumns="1"
+       >
+      <TableRow
+          android:background="#000000"
+          android:paddingBottom="1dp"
+          android:paddingRight="1dp">
 
-          <TextView
-
-              android:background="@drawable/bordas_layout"
-              android:gravity="center_horizontal"
-              android:text=" Energia(Kcal)  "
-              android:textAlignment="center"
-              android:textColor="@color/black" />
          <TextView
+             android:layout_marginLeft="1dp"
+             android:background="#FFF"
+             android:layout_width="wrap_content"
+             android:gravity="center_horizontal"
+             android:text=" Energia(Kcal)  "
+             android:textAlignment="center"
+             android:textColor="@color/black"
+             android:textSize="10sp" />
+
+         <TextView
+             android:layout_marginLeft="1dp"
+             android:background="#FFF"
+             android:textSize="10sp"
              android:textAlignment="center"
              android:gravity="center_horizontal"
              android:textColor="@color/black"
              android:text=" Proteínas(g)  "
-             android:background="@drawable/bordas_layout"/>
+             />
          <TextView
+             android:layout_marginLeft="1dp"
+             android:background="#FFF"
+             android:textSize="10sp"
              android:textAlignment="center"
              android:textColor="@color/black"
              android:gravity="center_horizontal"
              android:text=" Lipídeos(g)  "
-             android:background="@drawable/bordas_layout"/>
+             />
          <TextView
+             android:layout_marginLeft="1dp"
+             android:background="#FFF"
+             android:textSize="10sp"
              android:textAlignment="center"
              android:textColor="@color/black"
              android:gravity="center_horizontal"
              android:text=" Carboidratos(g) "
-             android:background="@drawable/bordas_layout"/>
+             />
       </TableRow>
-      <TableRow>
+      <TableRow
+          android:background="#000000"
+          android:paddingBottom="1dp"
+          android:paddingRight="1dp">
          <TextView
+             android:layout_marginLeft="1dp"
+             android:background="#FFF"
              android:textAlignment="center"
              android:gravity="center_horizontal"
              android:id="@+id/txtcaloria"
              android:textColor="@color/black"
-             android:background="@drawable/bordas_layout"/>
+             />
          <TextView
+             android:layout_marginLeft="1dp"
+             android:background="#FFF"
              android:textAlignment="center"
              android:textColor="@color/black"
              android:gravity="center_horizontal"
              android:id="@+id/txtproteina"
-             android:background="@drawable/bordas_layout"/>
+             />
          <TextView
+             android:layout_marginLeft="1dp"
+             android:background="#FFF"
              android:textAlignment="center"
              android:textColor="@color/black"
              android:gravity="center_horizontal"
              android:id="@+id/txtlipideos"
-             android:background="@drawable/bordas_layout"/>
+             />
          <TextView
+             android:layout_marginLeft="1dp"
+             android:background="#FFF"
              android:textAlignment="center"
              android:textColor="@color/black"
              android:gravity="center_horizontal"
              android:id="@+id/txtcarboidrato"
-             android:background="@drawable/bordas_layout"/>
+             />
       </TableRow>
-      <TableRow>
+      <TableRow
+          android:background="#000000"
+          android:paddingBottom="1dp"
+          android:paddingRight="1dp">
          <TextView
-
+             android:layout_marginLeft="1dp"
+             android:background="#FFF"
+             android:textSize="10sp"
              android:textAlignment="center"
              android:textColor="@color/black"
              android:gravity="center_horizontal"
              android:text="Fibra(g)"
-             android:background="@drawable/bordas_layout"
+
               />
          <TextView
+             android:layout_marginLeft="1dp"
+             android:background="#FFF"
+             android:textSize="10sp"
              android:textAlignment="center"
              android:textColor="@color/black"
              android:gravity="center_horizontal"
              android:text="Cálcio(mg)"
-             android:background="@drawable/bordas_layout"/>
+             />
          <TextView
+             android:layout_marginLeft="1dp"
+             android:background="#FFF"
+             android:textSize="10sp"
              android:textAlignment="center"
              android:textColor="@color/black"
              android:gravity="center_horizontal"
              android:text=" Fósforo(mg)  "
-             android:background="@drawable/bordas_layout"/>
+             />
          <TextView
+             android:layout_marginLeft="1dp"
+             android:background="#FFF"
+             android:textSize="10sp"
              android:textAlignment="center"
              android:textColor="@color/black"
              android:gravity="center_horizontal"
-             android:text="Ferro(mg)"
-             android:background="@drawable/bordas_layout"/>
+             android:text="Ferro(mg)" />
       </TableRow>
-      <TableRow>
+      <TableRow
+          android:background="#000000"
+          android:paddingBottom="1dp"
+          android:paddingRight="1dp">
          <TextView
+             android:textSize="10sp"
+             android:layout_marginLeft="1dp"
+             android:background="#FFF"
              android:textAlignment="center"
              android:gravity="center_horizontal"
              android:id="@+id/txtfibra"
              android:textColor="@color/black"
-             android:background="@drawable/bordas_layout"/>
+             />
          <TextView
+             android:textSize="10sp"
+             android:layout_marginLeft="1dp"
+             android:background="#FFF"
              android:textAlignment="center"
              android:textColor="@color/black"
              android:gravity="center_horizontal"
              android:id="@+id/txtcalcio"
-             android:background="@drawable/bordas_layout"/>
+             />
          <TextView
+             android:textSize="10sp"
+             android:layout_marginLeft="1dp"
+             android:background="#FFF"
              android:textAlignment="center"
              android:textColor="@color/black"
              android:gravity="center_horizontal"
              android:id="@+id/txtfosforo"
-             android:background="@drawable/bordas_layout"/>
+             />
          <TextView
+             android:textSize="10sp"
+             android:layout_marginLeft="1dp"
+             android:background="#FFF"
              android:textAlignment="center"
              android:textColor="@color/black"
              android:gravity="center_horizontal"
              android:id="@+id/txtferro"
-             android:background="@drawable/bordas_layout"/>
+             />
       </TableRow>
-      <TableRow>
+      <TableRow
+          android:background="#000000"
+          android:paddingBottom="1dp"
+          android:paddingRight="1dp">
          <TextView
+             android:layout_marginLeft="1dp"
+             android:background="#FFF"
+             android:textSize="10sp"
              android:textAlignment="center"
              android:textColor="@color/black"
              android:gravity="center_horizontal"
              android:text="Retinol(mg)"
-             android:background="@drawable/bordas_layout"/>
+             />
          <TextView
+             android:layout_marginLeft="1dp"
+             android:background="#FFF"
+             android:textSize="10sp"
              android:textAlignment="center"
              android:textColor="@color/black"
              android:gravity="center_horizontal"
              android:text="Niacina(mg)"
-             android:background="@drawable/bordas_layout"/>
+             />
          <TextView
+             android:layout_marginLeft="1dp"
+             android:background="#FFF"
+             android:textSize="10sp"
              android:textAlignment="center"
              android:textColor="@color/black"
              android:gravity="center_horizontal"
              android:text="Vit. B1(mg)"
-             android:background="@drawable/bordas_layout"/>
+             />
          <TextView
+             android:layout_marginLeft="1dp"
+             android:background="#FFF"
+             android:textSize="10sp"
              android:textAlignment="center"
              android:textColor="@color/black"
              android:gravity="center_horizontal"
              android:text="Vit. B2(mg)"
-             android:background="@drawable/bordas_layout"/>
+             />
       </TableRow>
-      <TableRow>
+      <TableRow
+          android:background="#000000"
+          android:paddingBottom="1dp"
+          android:paddingRight="1dp">
          <TextView
+             android:textSize="10sp"
+             android:layout_marginLeft="1dp"
+             android:background="#FFF"
              android:textAlignment="center"
              android:textColor="@color/black"
              android:gravity="center_horizontal"
              android:id="@+id/txtretinol"
-             android:background="@drawable/bordas_layout"/>
+             />
          <TextView
+             android:textSize="10sp"
+             android:layout_marginLeft="1dp"
+             android:background="#FFF"
              android:textAlignment="center"
              android:textColor="@color/black"
              android:gravity="center_horizontal"
              android:id="@+id/txtniacina"
-             android:background="@drawable/bordas_layout"/>
+             />
          <TextView
+             android:textSize="10sp"
+             android:layout_marginLeft="1dp"
+             android:background="#FFF"
              android:textAlignment="center"
              android:textColor="@color/black"
              android:gravity="center_horizontal"
              android:id="@+id/txtvitb1"
-             android:background="@drawable/bordas_layout"/>
+             />
          <TextView
+             android:textSize="10sp"
+             android:layout_marginLeft="1dp"
+             android:background="#FFF"
              android:textAlignment="center"
              android:textColor="@color/black"
              android:gravity="center_horizontal"
              android:id="@+id/txtvitb2"
-             android:background="@drawable/bordas_layout"/>
+             />
       </TableRow>
-      <TableRow>
+      <TableRow
+          android:background="#000000"
+          android:paddingBottom="1dp"
+          android:paddingRight="1dp">
          <TextView
+             android:layout_marginLeft="1dp"
+             android:background="#FFF"
+             android:textSize="10sp"
              android:textAlignment="center"
              android:textColor="@color/black"
              android:gravity="center_horizontal"
-             android:text="Vit. C(mg)"
-             android:background="@drawable/bordas_layout"/>
-      </TableRow>
-      <TableRow>
+             android:text="Vit. C(mg)"/>
          <TextView
+             android:textSize="10sp"
+             android:layout_width="wrap_content"
+             android:layout_marginLeft="1dp"
+             android:layout_height="wrap_content"
+             android:background="@color/white"
+             />
+         <TextView
+             android:textSize="10sp"
+             android:layout_width="wrap_content"
+             android:layout_marginLeft="1dp"
+             android:layout_height="wrap_content"
+             android:background="@color/white"
+             />
+
+         <TextView
+             android:textSize="10sp"
+             android:layout_width="wrap_content"
+             android:layout_marginLeft="1dp"
+             android:layout_height="wrap_content"
+             android:background="@color/white"
+             />
+
+      </TableRow>
+      <TableRow
+          android:background="#000000"
+          android:paddingBottom="1dp"
+          android:paddingRight="1dp"
+          >
+         <TextView
+             android:layout_marginLeft="1dp"
+             android:background="#FFF"
              android:textAlignment="center"
              android:textColor="@color/black"
              android:gravity="center_horizontal"
              android:id="@+id/txtvitc"
-             android:background="@drawable/bordas_layout"/>
+             />
+         <TextView
+             android:layout_width="wrap_content"
+             android:layout_marginLeft="1dp"
+             android:layout_height="wrap_content"
+             android:background="@color/white"
+             />
+         <TextView
+             android:layout_width="wrap_content"
+             android:layout_marginLeft="1dp"
+             android:layout_height="wrap_content"
+             android:background="@color/white"
+             />
+         <TextView
+             android:layout_width="wrap_content"
+             android:layout_marginLeft="1dp"
+             android:layout_height="wrap_content"
+             android:background="@color/white"
+             />
+
       </TableRow>
    </TableLayout>
 
